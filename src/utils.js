@@ -26,3 +26,19 @@ export function createElement(name, props = {}, ...children) {
 
   return element;
 }
+
+function generateRandomNumber() {
+  let number = 1;
+    return function() {
+        return number++;
+    };
+}
+
+export const getRandomNumber = generateRandomNumber();
+
+export function getClicksCount(item) {
+  if (!item.clickedTimes) {
+    return '';
+  }
+  return ` | Выделили ${item.clickedTimes} раз`;
+}

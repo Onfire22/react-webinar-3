@@ -1,3 +1,4 @@
+import { getRandomNumber } from "./utils";
 /**
  * Хранилище состояния приложения
  */
@@ -44,7 +45,7 @@ class Store {
   addItem() {
     this.setState({
       ...this.state,
-      list: [...this.state.list, { code: this.state.list.length + 1, title: 'Новая запись' }],
+      list: [...this.state.list, { code: getRandomNumber(), title: 'Новая запись' }],
     });
   }
 
@@ -69,6 +70,9 @@ class Store {
       list: this.state.list.map(item => {
         if (item.code === code) {
           item.selected = !item.selected;
+          item.clickedTimes = item.clickedTimes ? item.clickedTimes + 1 : 1;
+        } else {
+          item.selected = '';
         }
         return item;
       }),
