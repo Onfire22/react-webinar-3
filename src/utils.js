@@ -1,3 +1,5 @@
+import { pluralize } from "numeralize-ru";
+
 const propNames = new Set(['id', 'className', 'textContent', 'onclick']);
 
 /**
@@ -40,5 +42,5 @@ export function getClicksCount(item) {
   if (!item.clickedTimes) {
     return '';
   }
-  return ` | Выделили ${item.clickedTimes} раз`;
+  return ` | Выделили ${item.clickedTimes} ${pluralize(item.clickedTimes, 'раз', 'раза', 'раз')}`;
 }
