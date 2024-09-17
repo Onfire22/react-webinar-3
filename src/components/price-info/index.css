@@ -1,0 +1,6 @@
+.Price-info {
+  display: flex;
+  align-items: baseline;
+  justify-content: end;
+  gap: 12px;
+}

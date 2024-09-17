@@ -2,19 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
 
-function Head({ title, type, onHide }) {
+function Head({ title }) {
   return (
     <div className="Head">
-      <h1>{title}
-        {type === 'modal' && <button onClick={() => onHide()}>Закрыть</button>}
-      </h1>
+      <h1>{title}</h1>
     </div>
   );
 }
 
 Head.propTypes = {
   title: PropTypes.node,
-  type: PropTypes.string,
 };
 
 export default React.memo(Head);

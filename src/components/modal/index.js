@@ -1,13 +1,13 @@
 import React from "react";
-import './style.css';
 import ModalContent from '../modal-content/index';
+import './style.css';
 
-const Modal = ({ show, onHide, list, onDelete }) => {
+const Modal = ({ show, list, onDelete, onHide, totalCost }) => {
   return (
     <div className={show ? 'Modal' : 'visually-hidden'}>
-      <ModalContent onHide={onHide} list={list} onDelete={onDelete} />
+      <ModalContent list={list} onDelete={onDelete} totalCost={totalCost} onHide={onHide} />
     </div>
   );
 };
 
-export default Modal;
+export default React.memo(Modal);

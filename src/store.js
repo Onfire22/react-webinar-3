@@ -70,6 +70,13 @@ class Store {
     }
   }
 
+  getTotalCost() {
+    return this.state.cart.reduce((acc, item) => {
+      acc += item.price * item.quantity;
+      return acc;
+    }, 0);
+  }
+
   /**
    * Удаление записи по коду
    * @param code

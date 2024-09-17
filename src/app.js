@@ -4,6 +4,7 @@ import Controls from './components/controls';
 import Head from './components/head';
 import PageLayout from './components/page-layout';
 import Modal from './components/modal';
+import PriceInfo from './components/price-info';
 
 /**
  * Приложение
@@ -14,18 +15,24 @@ function App({ store }) {
   const [show, setShow] = useState();
   const list = store.getState().list;
   const cart = store.getState().cart;
+  const totalCost = store.getTotalCost();
 
   const callbacks = {
-    onAddItem: (code) => store.addToCart(code),
-    onDeleteItem: (code) => store.removeFromCart(code),
-    onShow: () => setShow(true),
-    onHide: () => setShow(false),
+    onAddItem: useCallback(
+      (code) => store.addToCart(code),
+      [store]),
+    onDeleteItem: useCallback(
+      (code) => store.removeFromCart(code),
+      [store]),
+    onShow: useCallback(() => setShow(true), [show]),
+    onHide: useCallback(() => setShow(false), [show]),
   };
 
   return (
     <PageLayout>
       <Head title="Магазин" />
-      <Controls cart={cart} onShow={callbacks.onShow} />
+      {/* <Controls onShow={callbacks.onShow} state="show" /> */}
+      <PriceInfo onShow={callbacks.onShow} totalCost={totalCost} cart={cart} state="show" />
       <List
         list={list}
         onAddItem={callbacks.onAddItem}
@@ -34,9 +41,9 @@ function App({ store }) {
       <Modal
         list={cart}
         show={show}
-        onShow={callbacks.onShow}
         onHide={callbacks.onHide}
         onDelete={callbacks.onDeleteItem}
+        totalCost={totalCost}
       />
     </PageLayout>
   );

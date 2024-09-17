@@ -14,11 +14,13 @@ function Item(props) {
         <span className="Item-price">
           {`${props.item.price} ₽`}
         </span>
-        <span>{props.item.quantity}</span>
         {
           props.type === 'list' ?
           <button onClick={() => props.onAddItem(props.item.code)}>Добавить</button> :
-          <button onClick={() => props.onDelete(props.item.code)}>Удалить</button>
+          <>
+            <span>{props.item.quantity}</span>
+            <button onClick={() => props.onDelete(props.item.code)}>Удалить</button>
+          </>
         }
       </div>
     </div>
@@ -33,7 +35,7 @@ Item.propTypes = {
     count: PropTypes.number,
   }).isRequired,
   onDelete: PropTypes.func,
-  onSelect: PropTypes.func,
+  onAddItem: PropTypes.func,
 };
 
 // Item.defaultProps = {
