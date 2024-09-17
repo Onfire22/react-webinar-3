@@ -16,23 +16,6 @@ function App({ store }) {
   const cart = store.getState().cart;
 
   const callbacks = {
-    // onDeleteItem: useCallback(
-    //   code => {
-    //     store.deleteItem(code);
-    //   },
-    //   [store],
-    // ),
-
-    onSelectItem: useCallback(
-      code => {
-        store.selectItem(code);
-      },
-      [store],
-    ),
-
-    // onAddItem: useCallback(() => {
-    //   store.addItem();
-    // }, [store]),
     onAddItem: (code) => store.addToCart(code),
     onDeleteItem: (code) => store.removeFromCart(code),
     onShow: () => setShow(true),
@@ -42,11 +25,10 @@ function App({ store }) {
   return (
     <PageLayout>
       <Head title="Магазин" />
-      <Controls onShow={callbacks.onShow} />
+      <Controls cart={cart} onShow={callbacks.onShow} />
       <List
         list={list}
         onAddItem={callbacks.onAddItem}
-        onSelectItem={callbacks.onSelectItem}
         type="list"
       />
       <Modal

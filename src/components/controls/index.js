@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
 
-function Controls({ onShow = () => {} }) {
+function Controls({ cart, onShow = () => {} }) {
+  // add pluarize && styles
   return (
     <div className="Controls">
       <span>В корзине:</span>
-      <span>Пусто</span>
+      {!cart.length ? <span>Пусто</span> : <span>{`${cart.length} товаров`}</span>}
       <button onClick={() => onShow()}>Перейти</button>
     </div>
   );

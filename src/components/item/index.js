@@ -5,7 +5,7 @@ import './style.css';
 function Item(props) {
 
   return (
-    <div className={'Item' + (props.item.selected ? ' Item_selected' : '')}>
+    <div className={'Item'}>
       <div className="Item-code">{props.item.code}</div>
       <div className="Item-title">
         {props.item.title}
@@ -14,7 +14,9 @@ function Item(props) {
         <span className="Item-price">
           {`${props.item.price} ₽`}
         </span>
-        {props.type === 'list' ?
+        <span>{props.item.quantity}</span>
+        {
+          props.type === 'list' ?
           <button onClick={() => props.onAddItem(props.item.code)}>Добавить</button> :
           <button onClick={() => props.onDelete(props.item.code)}>Удалить</button>
         }
