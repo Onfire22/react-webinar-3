@@ -21,5 +21,10 @@
 .Item-actions {
   display: flex;
   justify-content: flex-end;
+  gap: 33px;
   padding: 20px 20px 20px 10px;
+}
+
+.Item-price {
+  text-wrap: nowrap;
 }

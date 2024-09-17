@@ -37,7 +37,10 @@ function Item(props) {
           : ''}
       </div>
       <div className="Item-actions">
-        <button onClick={callbacks.onDelete}>Удалить</button>
+        <span className="Item-price"> 
+          {`${props.item.price} ₽`}
+        </span>
+        <button onClick={callbacks.onDelete}>Добавить</button>
       </div>
     </div>
   );
@@ -54,9 +57,9 @@ Item.propTypes = {
   onSelect: PropTypes.func,
 };
 
-Item.defaultProps = {
-  onDelete: () => {},
-  onSelect: () => {},
-};
+// Item.defaultProps = {
+//   onDelete: () => {},
+//   onSelect: () => {},
+// };
 
 export default React.memo(Item);
