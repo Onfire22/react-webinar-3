@@ -50,6 +50,22 @@ class Store {
     });
   }
 
+  addToCart(code) {
+    const selectedItem = this.state.list.find(item => item.code === code);
+
+    this.setState({
+      ...this.state,
+      cart: [...this.state.cart, selectedItem],
+    });
+  }
+
+  removeFromCart(code) {
+    this.setState({
+      ...this.state,
+      cart: this.state.cart.filter(item => item.code !== code),
+    });
+  }
+
   /**
    * Удаление записи по коду
    * @param code

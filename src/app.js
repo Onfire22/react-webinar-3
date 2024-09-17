@@ -13,14 +13,15 @@ import Modal from './components/modal';
 function App({ store }) {
   const [show, setShow] = useState();
   const list = store.getState().list;
+  const cart = store.getState().cart;
 
   const callbacks = {
-    onDeleteItem: useCallback(
-      code => {
-        store.deleteItem(code);
-      },
-      [store],
-    ),
+    // onDeleteItem: useCallback(
+    //   code => {
+    //     store.deleteItem(code);
+    //   },
+    //   [store],
+    // ),
 
     onSelectItem: useCallback(
       code => {
@@ -29,10 +30,11 @@ function App({ store }) {
       [store],
     ),
 
-    onAddItem: useCallback(() => {
-      store.addItem();
-    }, [store]),
-
+    // onAddItem: useCallback(() => {
+    //   store.addItem();
+    // }, [store]),
+    onAddItem: (code) => store.addToCart(code),
+    onDeleteItem: (code) => store.removeFromCart(code),
     onShow: () => setShow(true),
     onHide: () => setShow(false),
   };
@@ -43,13 +45,16 @@ function App({ store }) {
       <Controls onShow={callbacks.onShow} />
       <List
         list={list}
-        onDeleteItem={callbacks.onDeleteItem}
+        onAddItem={callbacks.onAddItem}
         onSelectItem={callbacks.onSelectItem}
+        type="list"
       />
       <Modal
+        list={cart}
         show={show}
         onShow={callbacks.onShow}
         onHide={callbacks.onHide}
+        onDelete={callbacks.onDeleteItem}
       />
     </PageLayout>
   );

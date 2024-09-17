@@ -5,6 +5,8 @@ import './style.css';
 function Controls({ onShow = () => {} }) {
   return (
     <div className="Controls">
+      <span>В корзине:</span>
+      <span>Пусто</span>
       <button onClick={() => onShow()}>Перейти</button>
     </div>
   );
