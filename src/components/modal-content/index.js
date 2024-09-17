@@ -3,7 +3,12 @@ import List from '../list/index';
 import Controls from '../controls/index';
 import './style.css';
 
-const ModalContent = ({ list, onDelete, onHide, totalCost }) => {
+const ModalContent = ({
+  list = [],
+  onDelete = () => {},
+  onHide = () => {},
+  totalCost,
+}) => {
   return (
     <div className="Modal-content">
       <header className="Modal-header">

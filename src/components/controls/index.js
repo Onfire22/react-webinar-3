@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
 
-function Controls({ onShow, onHide, state }) {
+function Controls({ onShow = () => {}, onHide = () => {}, state }) {
   return (
     <div className="Controls">  
       {state === 'hide' && <button type="button" onClick={() => onHide()}>Закрыть</button>}
@@ -16,9 +16,5 @@ Controls.propTypes = {
   onHide: PropTypes.func,
   state: PropTypes.string,
 };
-
-// Controls.defaultProps = {
-//   onAdd: () => {},
-// };
 
 export default React.memo(Controls);

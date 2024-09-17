@@ -1,9 +1,13 @@
 import React from "react";
 import Controls from '../controls/index';
-import PropTypes from 'prop-types';
 import './index.css';
 
-const PriceInfo = ({ onShow, state, cart, totalCost }) => {
+const PriceInfo = ({
+  onShow = () => {},
+  cart = [],
+  state,
+  totalCost,
+}) => {
   return (
     <div className="Price-info">
       <span>В корзине </span>
