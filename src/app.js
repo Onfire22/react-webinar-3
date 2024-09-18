@@ -31,7 +31,6 @@ function App({ store }) {
   return (
     <PageLayout>
       <Head title="Магазин" />
-      {/* <Controls onShow={callbacks.onShow} state="show" /> */}
       <PriceInfo onShow={callbacks.onShow} totalCost={totalCost} cart={cart} state="show" />
       <List
         list={list}

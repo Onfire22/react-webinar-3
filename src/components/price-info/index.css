@@ -4,3 +4,7 @@
   justify-content: end;
   gap: 12px;
 }
+
+.Price-info_accent {
+  font-weight: bold;
+}

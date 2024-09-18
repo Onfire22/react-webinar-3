@@ -17,8 +17,8 @@ const ModalContent = ({
       </header>
       <List list={list} onDeleteItem={onDelete} />
       <footer className="Price-info">
-        <b>Итого</b>
-        <b>{`${totalCost} ₽`}</b>
+        <span className="Price-info_accent">Итого</span>
+        <span className="Price-info_accent">{`${totalCost} ₽`}</span>
       </footer>
     </div>
   );

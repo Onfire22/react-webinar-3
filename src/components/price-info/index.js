@@ -11,7 +11,7 @@ const PriceInfo = ({
   return (
     <div className="Price-info">
       <span>В корзине </span>
-      {!totalCost ? <b>Пусто</b> : <b>{`${cart.length} товара / ${totalCost} ₽`}</b> }
+      {!totalCost ? <span className="Price-info_accent">Пусто</span> : <span className="Price-info_accent">{`${cart.length} товара / ${totalCost} ₽`}</span> }
       <Controls onShow={onShow} state={state} />
     </div>
   );
