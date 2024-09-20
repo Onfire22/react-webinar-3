@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
+import { normilizePrice } from '../../utils';
 
 function Item(props) {
 
@@ -12,7 +13,7 @@ function Item(props) {
       </div>
       <div className="Item-actions">
         <span className="Item-price">
-          {`${props.item.price} ₽`}
+          {`${normilizePrice(props.item.price)} ₽`}
         </span>
         {
           props.type === 'list' ?

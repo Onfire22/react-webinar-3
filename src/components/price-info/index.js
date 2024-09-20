@@ -1,6 +1,7 @@
 import React from "react";
 import Controls from '../controls/index';
 import './index.css';
+import { normilizePrice, plural } from "../../utils";
 
 const PriceInfo = ({
   onShow = () => {},
@@ -11,7 +12,7 @@ const PriceInfo = ({
   return (
     <div className="Price-info">
       <span>В корзине </span>
-      {!totalCost ? <span className="Price-info_accent">Пусто</span> : <span className="Price-info_accent">{`${cart.length} товара / ${totalCost} ₽`}</span> }
+      {!cart.length ? <span className="Price-info_accent">Пусто</span> : <span className="Price-info_accent">{`${cart.length} ${plural(cart.length, { one: 'товар', few: 'товара', many: 'товаров' })} / ${normilizePrice(totalCost)} ₽`}</span> }
       <Controls onShow={onShow} state={state} />
     </div>
   );
