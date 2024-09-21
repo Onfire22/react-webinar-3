@@ -6,23 +6,18 @@ import { normilizePrice } from '../../utils';
 function Item(props) {
 
   return (
-    <div className={'Item'}>
-      <div className="Item-code">{props.item.code}</div>
-      <div className="Item-title">
-        {props.item.title}
-      </div>
-      <div className="Item-actions">
-        <span className="Item-price">
-          {`${normilizePrice(props.item.price)} ₽`}
-        </span>
-        {
-          props.type === 'list' ?
-          <button onClick={() => props.onAddItem(props.item.code)}>Добавить</button> :
-          <>
-            <span>{props.item.quantity}</span>
-            <button onClick={() => props.onDelete(props.item.code)}>Удалить</button>
-          </>
-        }
+    <div className="List-item">
+      <div className={'Item'}>
+        <div className="Item-code">{props.item.code}</div>
+        <div className="Item-title">
+          {props.item.title}
+        </div>
+        <div className="Item-actions">
+          <span className="Item-price">
+            {`${normilizePrice(props.item.price)} ₽`}
+          </span>
+          <button onClick={() => props.onAddItem(props.item.code)}>Добавить</button>
+        </div>
       </div>
     </div>
   );
@@ -32,10 +27,8 @@ Item.propTypes = {
   item: PropTypes.shape({
     code: PropTypes.number,
     title: PropTypes.string,
-    selected: PropTypes.bool,
-    count: PropTypes.number,
+    price: PropTypes.number,
   }).isRequired,
-  onDelete: PropTypes.func,
   onAddItem: PropTypes.func,
 };
 

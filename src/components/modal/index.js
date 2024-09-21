@@ -1,14 +1,8 @@
 import React, { useEffect, useRef } from "react";
-import ModalContent from '../modal-content/index';
+import PropTypes from "prop-types";
 import './style.css';
 
-const Modal = ({
-  list = [],
-  onDelete = () => {},
-  onHide = () => {},
-  show,
-  totalCost,
-}) => {
+const Modal = ({ onHide = () => {}, children, show }) => {
   const modalRef = useRef(null);
 
   const handleClickHide = ({ target }) => {
@@ -34,9 +28,15 @@ const Modal = ({
 
   return (
     <div ref={modalRef} className={show ? 'Modal' : 'visually-hidden'}>
-      <ModalContent list={list} onDelete={onDelete} totalCost={totalCost} onHide={onHide} />
+      <div className="Modal-content">{children}</div>
     </div>
   );
+};
+
+Modal.propTypes = {
+  onHide: PropTypes.func,
+  children: PropTypes.node,
+  show: PropTypes.bool,
 };
 
 export default React.memo(Modal);

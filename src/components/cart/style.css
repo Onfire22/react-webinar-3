@@ -1,4 +1,4 @@
-.Modal-header {
+.Cart-header {
   background: rgb(245, 245, 245);
   padding: 20px 0px 23px 20px;
   display: flex;
@@ -8,20 +8,23 @@
   margin-bottom: 71px;
 }
 
-.Modal-header h2 {
+.Cart-header h2 {
   margin: 0;
   font-size: 32px;
   font-weight: 700;
   line-height: 37px;
 }
 
-.Modal-content {
-  flex-basis: 960px;
-  background-color: rgb(255, 255, 255);
+.Cart {
+  width: 960px;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  background-color: rgb(255, 255, 255);
 }
 
-.Modal-content footer {
-  padding: 20px 120px 89px;
+.Cart-info {
+  display: flex;
+  align-items: baseline;
+  justify-content: end;
+  gap: 53px;
+  padding: 20px 100px 89px;
 }

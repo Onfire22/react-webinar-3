@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from 'react';
 import List from './components/list';
-import Controls from './components/controls';
 import Head from './components/head';
 import PageLayout from './components/page-layout';
 import Modal from './components/modal';
 import PriceInfo from './components/price-info';
+import Cart from './components/cart';
 
 /**
  * Приложение
@@ -34,16 +34,17 @@ function App({ store }) {
       <PriceInfo onShow={callbacks.onShow} totalCost={totalCost} cart={cart} state="show" />
       <List
         list={list}
+        type="product"
         onAddItem={callbacks.onAddItem}
-        type="list"
       />
-      <Modal
-        list={cart}
-        show={show}
-        onHide={callbacks.onHide}
-        onDelete={callbacks.onDeleteItem}
-        totalCost={totalCost}
-      />
+      <Modal show={show} onHide={callbacks.onHide}>
+        <Cart
+          onHide={callbacks.onHide}
+          onDelete={callbacks.onDeleteItem}
+          totalCost={totalCost}
+          cart={cart}
+        />
+      </Modal>
     </PageLayout>
   );
 }
