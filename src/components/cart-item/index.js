@@ -15,7 +15,7 @@ const CartItem = (props) => {
           </span>
           <span>{props.item.quantity}</span>
         </div>
-        <button onClick={() => props.onDelete(props.item.code)}>Удалить</button>
+        <button onClick={() => props.onDeleteItem(props.item.code)}>Удалить</button>
       </div>
     </div>
   );
@@ -31,4 +31,4 @@ CartItem.propTypes = {
   onDelete: PropTypes.func,
 };
 
-export default CartItem;
+export default React.memo(CartItem);

@@ -5,6 +5,8 @@ import PageLayout from './components/page-layout';
 import Modal from './components/modal';
 import PriceInfo from './components/price-info';
 import Cart from './components/cart';
+import CartItem from './components/cart-item/index';
+import Item from './components/item/index';
 
 /**
  * Приложение
@@ -33,12 +35,13 @@ function App({ store }) {
       <Head title="Магазин" />
       <PriceInfo onShow={callbacks.onShow} totalCost={totalCost} cart={cart} state="show" />
       <List
+        Component={Item}
         list={list}
-        type="product"
         onAddItem={callbacks.onAddItem}
       />
       <Modal show={show} onHide={callbacks.onHide}>
         <Cart
+          Component={CartItem}
           onHide={callbacks.onHide}
           onDelete={callbacks.onDeleteItem}
           totalCost={totalCost}
@@ -50,3 +53,4 @@ function App({ store }) {
 }
 
 export default App;
+  
