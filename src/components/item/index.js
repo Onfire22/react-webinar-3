@@ -6,7 +6,7 @@ import ItemPage from '../item-page';
 import { Link } from 'react-router-dom';
 import './style.css';
 
-function Item(props) {
+function Item(props = {}) {
   const cn = bem('Item');
 
   const callbacks = {
@@ -32,10 +32,6 @@ Item.propTypes = {
     price: PropTypes.number,
   }).isRequired,
   onAdd: PropTypes.func,
-};
-
-Item.defaultProps = {
-  onAdd: () => {},
 };
 
 export default memo(Item);

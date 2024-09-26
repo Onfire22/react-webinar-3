@@ -32,7 +32,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path='/items' element={<Main callbacks={callbacks} select={select} />} />
+        <Route path='/' element={<Main callbacks={callbacks} select={select} />} />
         <Route path='/items/:id' element={<ItemPage onOpen={callbacks.openModalBasket} onAdd={callbacks.addToBasket} />} />
       </Routes>
       {activeModal === 'basket' && <Basket />}

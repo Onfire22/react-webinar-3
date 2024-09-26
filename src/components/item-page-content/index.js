@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import React from 'react';
 import './styles.css';
 
 const PageContent = ({ item = {}, onAdd = () => {} }) => {
@@ -28,4 +28,4 @@ const PageContent = ({ item = {}, onAdd = () => {} }) => {
   );
 };
 
-export default PageContent;
+export default React.memo(PageContent);

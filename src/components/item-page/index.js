@@ -1,3 +1,4 @@
+import React from 'react';
 import Head from '../head';
 import useSelector from '../../store/use-selector';
 import BasketTool from '../basket-tool';
@@ -31,4 +32,4 @@ const ItemPage = ({ onOpen, onAdd }) => {
   );
 };
 
-export default ItemPage;
+export default React.memo(ItemPage);
