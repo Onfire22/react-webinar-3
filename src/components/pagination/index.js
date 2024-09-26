@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './styles.css';
 
 const Pagination = ({ total, limit, getNextPages }) => {
   const [active, setActive] = useState(0);
 
   const pages = Math.floor(total / limit);
-  const buildPaginationArr = (active, pages) => {
+  const buildPagination = (active, pages) => {
     const arr = [...Array(pages).keys()];
     const pagination = {
       start: 0,
@@ -36,9 +36,14 @@ const Pagination = ({ total, limit, getNextPages }) => {
     setActive(page);
   };
 
+  useEffect(() => {
+    getNextPages();
+    setActive(0);
+  }, []);
+
   return (
     <ul className="pagination-list">
-      {buildPaginationArr(active, pages).map((page, index) => (
+      {buildPagination(active, pages).map((page, index) => (
         <li key={index} className={getItemClass(page)}>
           { page === '...' ? <span>{page}</span> : <button className="pagination-list_button" type="button" onClick={() => handleClick(page)}>{page + 1}</button> }
         </li>
@@ -47,4 +52,4 @@ const Pagination = ({ total, limit, getNextPages }) => {
   );
 };
 
-export default Pagination;
+export default React.memo(Pagination);

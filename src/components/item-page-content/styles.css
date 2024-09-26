@@ -8,14 +8,18 @@ p {
 
 .item-info {
   margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21px;
 }
 
-.item-info:last-child {
+.item-info:nth-child(5) {
+  font-size: 24px;
   font-weight: 700;
 }
 
 .item-info:first-child {
-  margin-top: 41px;
+  margin-top: 20px;
 }
 
 .item-info-accent {
