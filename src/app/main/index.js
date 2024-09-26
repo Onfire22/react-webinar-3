@@ -5,10 +5,12 @@ import Head from '../../components/head';
 import BasketTool from '../../components/basket-tool';
 import List from '../../components/list';
 import Pagination from '../../components/pagination';
+import useLocales from '../../hooks';
 import { API_ROUTES } from '../../routes';
 
 function Main({ callbacks, select, getNextPages }) {
   const [dataLength, setDataLength] = useState(0);
+  const { lang } = useLocales();
   const renders = {
     item: useCallback(
       item => {
@@ -26,7 +28,7 @@ function Main({ callbacks, select, getNextPages }) {
 
   return (
     <PageLayout>
-      <Head title="Магазин" />
+      <Head title={lang.titles.store}/>
       <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount} sum={select.sum} />
       <List list={select.list} renderItem={renders.item} />
       <Pagination

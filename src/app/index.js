@@ -6,6 +6,7 @@ import useStore from '../store/use-store';
 import useSelector from '../store/use-selector';
 import { Routes, Route } from 'react-router-dom';
 import { ROUTES } from '../routes';
+import LocalesProvider from '../i18nContext/localesProvider';
 
 /**
  * Приложение
@@ -33,13 +34,13 @@ function App() {
   }, []);
 
   return (
-    <>
+    <LocalesProvider>
       <Routes>
         <Route path={ROUTES.main()} element={<Main callbacks={callbacks} select={select} getNextPages={callbacks.getNextPages}/>} />
         <Route path={ROUTES.items()} element={<ItemPage onOpen={callbacks.openModalBasket} onAdd={callbacks.addToBasket} />} />
       </Routes>
       {activeModal === 'basket' && <Basket />}
-    </>
+    </LocalesProvider>
   );
 }
 

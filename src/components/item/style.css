@@ -38,3 +38,7 @@
   white-space: nowrap;
   font-size: 18px;
 }
+
+.Item-add-btn {
+  white-space: nowrap;
+}

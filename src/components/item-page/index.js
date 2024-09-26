@@ -22,7 +22,7 @@ const ItemPage = ({ onOpen, onAdd }) => {
       .then((data) => data.json())
       .then((data) => setItem(data.result));
     return () => setItem(null);
-  }, []);
+  }, []); //!!!!!!!!!!!!
 
   return (
     <PageLayout>
