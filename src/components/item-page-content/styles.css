@@ -1,0 +1,23 @@
+p {
+  margin: 0;
+}
+
+.Content {
+  padding: 0 40px;
+}
+
+.item-info {
+  margin-bottom: 20px;
+}
+
+.item-info:last-child {
+  font-weight: 700;
+}
+
+.item-info:first-child {
+  margin-top: 41px;
+}
+
+.item-info-accent {
+  font-weight: 700;
+}
