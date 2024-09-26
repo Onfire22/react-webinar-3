@@ -6,7 +6,7 @@ import BasketTool from '../../components/basket-tool';
 import List from '../../components/list';
 import Pagination from '../../components/pagination';
 
-function Main({ callbacks, select }) {
+function Main({ callbacks, select, getNextPages }) {
   const renders = {
     item: useCallback(
       item => {
@@ -22,6 +22,7 @@ function Main({ callbacks, select }) {
       <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount} sum={select.sum} />
       <List list={select.list} renderItem={renders.item} />
       <Pagination
+        getNextPages={getNextPages}
         total={542}
         limit={10}
       />

@@ -6,6 +6,7 @@ import PageLayout from '../page-layout';
 import PageContent from '../item-page-content';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { API_ROUTES } from '../../routes';
 import './styles.css';
 
 const ItemPage = ({ onOpen, onAdd }) => {
@@ -17,7 +18,7 @@ const ItemPage = ({ onOpen, onAdd }) => {
   }));
 
   useEffect(() => {
-    fetch(`/api/v1/articles/${id}?fields=madeIn(title,code),category(title),description,edition,price,_id`)
+    fetch(API_ROUTES.getItemById(id))
       .then((data) => data.json())
       .then((data) => setItem(data.result));
     return () => setItem(null);

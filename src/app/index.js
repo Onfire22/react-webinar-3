@@ -18,8 +18,9 @@ function App() {
     addToBasket: useCallback(_id => store.actions.basket.addToBasket(_id), [store]),
     // Открытие модалки корзины
     openModalBasket: useCallback(() => store.actions.modals.open('basket'), [store]),
+    // Получение следующих страниц
+    getNextPages: useCallback((skip) => store.actions.catalog.loadNextItems(skip), [store]),
   };
-  console.log(ROUTES)
   const select = useSelector(state => ({
     list: state.catalog.list,
     amount: state.basket.amount,
@@ -34,7 +35,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path={ROUTES.main()} element={<Main callbacks={callbacks} select={select} />} />
+        <Route path={ROUTES.main()} element={<Main callbacks={callbacks} select={select} getNextPages={callbacks.getNextPages}/>} />
         <Route path={ROUTES.items()} element={<ItemPage onOpen={callbacks.openModalBasket} onAdd={callbacks.addToBasket} />} />
       </Routes>
       {activeModal === 'basket' && <Basket />}
