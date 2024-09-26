@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import './styles.css';
 
 const Pagination = ({ total, limit, getNextPages }) => {
@@ -51,5 +52,11 @@ const Pagination = ({ total, limit, getNextPages }) => {
     </ul>
   );
 };
+
+Pagination.propTypes = {
+  total: PropTypes.number,
+  limit: PropTypes.number,
+  getNextPages: PropTypes.func,
+}
 
 export default React.memo(Pagination);

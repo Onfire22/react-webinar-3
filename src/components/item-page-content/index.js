@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import useLocales from '../../hooks';
 import './styles.css';
 
@@ -30,5 +31,24 @@ const PageContent = ({ item = {}, onAdd = () => {} }) => {
     </div>
   );
 };
+
+PageContent.propTypes = {
+  item: PropTypes.shape({
+    category: PropTypes.shape({
+      title: PropTypes.string,
+      _id: PropTypes.string,
+    }),
+    description: PropTypes.string,
+    edition: PropTypes.number,
+    madeIn: PropTypes.shape({
+      title: PropTypes.string,
+      _id: PropTypes.string,
+    }),
+    price: PropTypes.number,
+    title: PropTypes.string,
+    _id: PropTypes.string,
+  }),
+  onAdd: PropTypes.func,
+}
 
 export default React.memo(PageContent);

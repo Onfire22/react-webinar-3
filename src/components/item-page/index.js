@@ -4,12 +4,13 @@ import useSelector from '../../store/use-selector';
 import BasketTool from '../basket-tool';
 import PageLayout from '../page-layout';
 import PageContent from '../item-page-content';
+import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { API_ROUTES } from '../../routes';
 import './styles.css';
 
-const ItemPage = ({ onOpen, onAdd }) => {
+const ItemPage = ({ onOpen = () => {}, onAdd = () => {} }) => {
   const { id } = useParams();
   const [item, setItem] = useState(null);
   const select = useSelector(state => ({
@@ -32,5 +33,10 @@ const ItemPage = ({ onOpen, onAdd }) => {
     </PageLayout>
   );
 };
+
+ItemPage.propTypes = {
+  onOpen: PropTypes.func,
+  onclose: PropTypes.func,
+}
 
 export default React.memo(ItemPage);
