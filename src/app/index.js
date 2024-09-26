@@ -2,6 +2,7 @@ import { useCallback, useContext, useEffect, useState } from 'react';
 import Main from './main';
 import Basket from './basket';
 import ItemPage from '../components/item-page';
+import NotFound from '../components/404';
 import useStore from '../store/use-store';
 import useSelector from '../store/use-selector';
 import { Routes, Route } from 'react-router-dom';
@@ -38,6 +39,7 @@ function App() {
       <Routes>
         <Route path={ROUTES.main()} element={<Main callbacks={callbacks} select={select} getNextPages={callbacks.getNextPages}/>} />
         <Route path={ROUTES.items()} element={<ItemPage onOpen={callbacks.openModalBasket} onAdd={callbacks.addToBasket} />} />
+        <Route path={ROUTES.notFound()} element={<NotFound />}/>
       </Routes>
       {activeModal === 'basket' && <Basket />}
     </LocalesProvider>

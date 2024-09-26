@@ -7,5 +7,6 @@ export const API_ROUTES = {
 export const ROUTES = {
   main: () => '/',
   items: () => '/items/:id',
-  item: (id) => `/items/${id}`
+  item: (id) => `/items/${id}`,
+  notFound: () => '*',
 };
