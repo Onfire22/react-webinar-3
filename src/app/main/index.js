@@ -5,9 +5,6 @@ import Head from '../../components/head';
 import BasketTool from '../../components/basket-tool';
 import List from '../../components/list';
 import Pagination from '../../components/pagination';
-import useStore from '../../store/use-store';
-import useSelector from '../../store/use-selector';
-import ItemPage from '../../components/item-page';
 
 function Main({ callbacks, select }) {
   const renders = {

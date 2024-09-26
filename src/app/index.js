@@ -5,6 +5,7 @@ import ItemPage from '../components/item-page';
 import useStore from '../store/use-store';
 import useSelector from '../store/use-selector';
 import { Routes, Route } from 'react-router-dom';
+import { ROUTES } from '../routes';
 
 /**
  * Приложение
@@ -18,6 +19,7 @@ function App() {
     // Открытие модалки корзины
     openModalBasket: useCallback(() => store.actions.modals.open('basket'), [store]),
   };
+  console.log(ROUTES)
   const select = useSelector(state => ({
     list: state.catalog.list,
     amount: state.basket.amount,
@@ -32,8 +34,8 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path='/' element={<Main callbacks={callbacks} select={select} />} />
-        <Route path='/items/:id' element={<ItemPage onOpen={callbacks.openModalBasket} onAdd={callbacks.addToBasket} />} />
+        <Route path={ROUTES.main()} element={<Main callbacks={callbacks} select={select} />} />
+        <Route path={ROUTES.items()} element={<ItemPage onOpen={callbacks.openModalBasket} onAdd={callbacks.addToBasket} />} />
       </Routes>
       {activeModal === 'basket' && <Basket />}
     </>
