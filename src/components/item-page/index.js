@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import './styles.css';
 
-const ItemPage = () => {
+const ItemPage = ({ onOpen, onAdd }) => {
   const { id } = useParams();
   const [item, setItem] = useState(null);
   const select = useSelector(state => ({
@@ -16,18 +16,17 @@ const ItemPage = () => {
   }));
 
   useEffect(() => {
-    fetch(`/api/v1/articles/${id}?fields=madeIn(title,code),category(title),description,edition,price`)
+    fetch(`/api/v1/articles/${id}?fields=madeIn(title,code),category(title),description,edition,price,_id`)
       .then((data) => data.json())
       .then((data) => setItem(data.result));
+    return () => setItem(null);
   }, []);
-
-  console.log('ITEM', item)
 
   return (
     <PageLayout>
       <Head title={'Название товара'}/>
-      <BasketTool onOpen={console.log('open')} amount={select.amount} sum={select.sum} />
-      <PageContent item={item} />
+      <BasketTool onOpen={onOpen} amount={select.amount} sum={select.sum} />
+      <PageContent item={item} onAdd={onAdd} />
     </PageLayout>
   );
 };

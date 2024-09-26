@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import './styles.css';
 
-const PageContent = ({ item = {} }) => {
+const PageContent = ({ item = {}, onAdd = () => {} }) => {
   return (
     <div className="Content">
       <p className="item-info">
@@ -22,6 +23,7 @@ const PageContent = ({ item = {} }) => {
         Цена:
         <span className="item-info-accent">{` ${item?.price}  ₽`}</span>
       </p>
+      <button onClick={() => onAdd(item?._id)}>Добавить</button>
     </div>
   );
 };
