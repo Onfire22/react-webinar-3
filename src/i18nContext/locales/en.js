@@ -1,9 +1,12 @@
+import { plural } from "../../utils";
+
 export const en = {
   controls: {
     main: 'Main',
     inCart: 'In Cart:',
     empty: 'empty',
     totalCost: 'Total cost',
+    plurItems: (amount) => plural(amount, { one: 'item', other: 'items'}, 'en-EN')
   },
   titles: {
     store: 'Store',

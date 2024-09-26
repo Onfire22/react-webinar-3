@@ -18,11 +18,7 @@ function BasketTool({ sum = 0, amount = 0, onOpen = () => {} }) {
         <span className={cn('label')}>{lang.controls.inCart}</span>
         <span className={cn('total')}>
           {amount
-            ? `${amount} ${plural(amount, {
-                one: 'товар',
-                few: 'товара',
-                many: 'товаров',
-              })} / ${numberFormat(sum)} ₽`
+            ? `${amount} ${lang.controls.plurItems(amount)} / ${numberFormat(sum)} ₽`
             : lang.controls.empty}
         </span>
         <button onClick={onOpen}>{lang.buttons.goTo}</button>
