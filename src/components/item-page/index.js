@@ -22,11 +22,11 @@ const ItemPage = ({ onOpen, onAdd }) => {
       .then((data) => data.json())
       .then((data) => setItem(data.result));
     return () => setItem(null);
-  }, []); //!!!!!!!!!!!!
+  }, []); 
 
   return (
     <PageLayout>
-      <Head title={'Название товара'}/>
+      <Head title={item?.title}/>
       <BasketTool onOpen={onOpen} amount={select.amount} sum={select.sum} />
       <PageContent item={item} onAdd={onAdd} />
     </PageLayout>
