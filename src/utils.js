@@ -34,6 +34,3 @@ export function numberFormat(value, locale = 'ru-RU', options = {}) {
   return new Intl.NumberFormat(locale, options).format(value);
 }
 
-export function buildPaginationArr(active, pages) {
-  return [...Array(pages).keys()].map((item) => item + 1);
-}
