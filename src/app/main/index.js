@@ -6,7 +6,7 @@ import BasketTool from '../../components/basket-tool';
 import List from '../../components/list';
 import Pagination from '../../components/pagination';
 import useLocales from '../../hooks';
-import { API_ROUTES } from '../../routes';
+import { API_ROUTES, ROUTES } from '../../routes';
 
 function Main({ callbacks, select, getNextPages }) {
   const [dataLength, setDataLength] = useState(0);
@@ -14,7 +14,7 @@ function Main({ callbacks, select, getNextPages }) {
   const renders = {
     item: useCallback(
       item => {
-        return <Item item={item} onAdd={callbacks.addToBasket} />;
+        return <Item item={item} onAdd={callbacks.addToBasket} path={ROUTES.item(item._id)} />;
       },
       [callbacks.addToBasket],
     ),

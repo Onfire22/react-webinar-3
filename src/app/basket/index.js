@@ -6,6 +6,7 @@ import BasketTotal from '../../components/basket-total';
 import useStore from '../../store/use-store';
 import useSelector from '../../store/use-selector';
 import useLocales from '../../hooks';
+import { ROUTES } from '../../routes';
 
 function Basket() {
   const store = useStore();
@@ -27,7 +28,7 @@ function Basket() {
   const renders = {
     itemBasket: useCallback(
       item => {
-        return <ItemBasket item={item} onRemove={callbacks.removeFromBasket} onClose={callbacks.closeModal} />;
+        return <ItemBasket item={item} path={ROUTES.item(item._id)} onRemove={callbacks.removeFromBasket} onClose={callbacks.closeModal} />;
       },
       [callbacks.removeFromBasket],
     ),
