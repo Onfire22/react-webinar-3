@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import PropTypes from 'prop-types';
 import { cn as bem } from '@bem-react/classname';
-import { numberFormat, plural } from '../../utils';
-import { Link } from 'react-router-dom';
+import { numberFormat } from '../../utils';
+import LinkToMainPage from '../link-to-main-page';
 import { ROUTES } from '../../routes';
 import useLocales from '../../hooks/index';
 import './style.css';
@@ -13,7 +13,11 @@ function BasketTool({ sum = 0, amount = 0, onOpen = () => {} }) {
 
   return (
     <div className={cn()}>
-      <Link className={cn('main')} to={ROUTES.main()}>{lang.controls.main}</Link>
+      <LinkToMainPage
+        route={ROUTES.main()}
+        className={cn('link')}
+        title={lang.controls.main}
+      />
       <div className={cn('info')}>
         <span className={cn('label')}>{lang.controls.inCart}</span>
         <span className={cn('total')}>

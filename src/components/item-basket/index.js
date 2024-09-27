@@ -2,6 +2,7 @@ import { memo, useCallback } from 'react';
 import { numberFormat } from '../../utils';
 import { cn as bem } from '@bem-react/classname';
 import { Link } from 'react-router-dom';
+import LinkToMainPage from '../link-to-main-page';
 import PropTypes from 'prop-types';
 import { ROUTES } from '../../routes';
 import useLocales from '../../hooks';

@@ -23,7 +23,7 @@ function Main({ callbacks, select, getNextPages }) {
   useEffect(() => {
     fetch(API_ROUTES.getAllItems())
       .then((data) => data.json())
-      .then(({ result }) => setDataLength(result.items.length));
+      .then(({ result }) => setDataLength(result.count));
   }, [])
 
   return (
