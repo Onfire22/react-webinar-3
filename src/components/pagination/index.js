@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './styles.css';
 
-const Pagination = ({ total, limit, getNextPages, onActive, active }) => {
+const Pagination = ({ total = 0, limit, getNextPages, onActive, active }) => {
   const pages = Math.floor(total / limit);
 
   const buildPagination = (active, pages) => {

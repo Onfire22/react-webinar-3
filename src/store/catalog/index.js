@@ -13,19 +13,17 @@ class Catalog extends StoreModule {
       list: [],
       paginationSkip: 10,
       paginationActiveId: 0,
+      dataLength: 0,
     };
   }
 
-  async load() {
-    const response = await fetch('/api/v1/articles');
+  async setDataLength() {
+    const response = await fetch(API_ROUTES.getAllItems());
     const json = await response.json();
-    this.setState(
-      {
-        ...this.getState(),
-        list: json.result.items,
-      },
-      'Загружены товары из АПИ',
-    );
+    this.setState({
+      ...this.getState(),
+      dataLength: json.result.count,
+    });
   }
 
   async loadNextItems(skip = 0) {
@@ -34,7 +32,7 @@ class Catalog extends StoreModule {
     this.setState({
       ...this.getState(),
       list: json.result.items,
-    });
+    }, 'Загружены товары из АПИ');
   }
 
   setActiveId(id) {

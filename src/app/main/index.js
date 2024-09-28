@@ -6,13 +6,12 @@ import BasketTool from '../../components/basket-tool';
 import List from '../../components/list';
 import Pagination from '../../components/pagination';
 import useLocales from '../../hooks';
-import { API_ROUTES, ROUTES } from '../../routes';
+import { ROUTES } from '../../routes';
 import useSelector from '../../store/use-selector';
 import useStore from '../../store/use-store';
 
 function Main({ callbacks, select, getNextPages }) {
   const store = useStore();
-  const [dataLength, setDataLength] = useState(0);
   const { lang } = useLocales();
   const renders = {
     item: useCallback(
@@ -24,12 +23,13 @@ function Main({ callbacks, select, getNextPages }) {
   };
 
   const getActive = useCallback((id) => store.actions.catalog.setActiveId(id), [store]);
+  const getItemsLength = useCallback(() => store.actions.catalog.setDataLength(), [store]);
   const active = useSelector(state => state.catalog.paginationActiveId);
+  const skip = useSelector(state => state.catalog.paginationSkip);
+  const length = useSelector(state => state.catalog.dataLength);
 
   useEffect(() => {
-    fetch(API_ROUTES.getAllItems())
-      .then((data) => data.json())
-      .then(({ result }) => setDataLength(result.count));
+    getItemsLength();
   }, [])
 
   return (
@@ -39,8 +39,8 @@ function Main({ callbacks, select, getNextPages }) {
       <List list={select.list} renderItem={renders.item} />
       <Pagination
         getNextPages={getNextPages}
-        total={dataLength}
-        limit={10}
+        total={length}
+        limit={skip}
         onActive={getActive}
         active={active}
       />

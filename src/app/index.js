@@ -30,7 +30,7 @@ function App() {
   const activeModal = useSelector(state => state.modals.name);
 
   useEffect(() => {
-    store.actions.catalog.load();
+    callbacks.getNextPages();
   }, []);
 
   return (
