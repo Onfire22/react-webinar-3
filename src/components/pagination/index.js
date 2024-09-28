@@ -11,13 +11,19 @@ const Pagination = ({ total, limit, getNextPages }) => {
     const pagination = {
       start: 0,
       divisor: '...',
-      end: active >= 17 ? pages : Math.floor(pages / 2),
+      end: pages,
     };
     if (!active || active === 1) {
       return [pagination.start, ...arr.slice(1, 3), pagination.divisor, pagination.end]
     }
     if (active === 2) {
       return [pagination.start, ...arr.slice(1, active + 2), pagination.divisor, pagination.end];
+    }
+    if (active === pages) {
+      return [pagination.start, pagination.divisor, ...arr.slice(-2), pagination.end];
+    }
+    if (active === pages - 1) {
+      return [pagination.start, pagination.divisor, ...arr.slice(-3), pagination.end];
     }
     if (active >= 3) {
       return [pagination.start, pagination.divisor, ...arr.slice(active - 1, active + 2), pagination.divisor, pagination.end];

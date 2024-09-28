@@ -11,6 +11,8 @@ class Catalog extends StoreModule {
   initState() {
     return {
       list: [],
+      paginationSkip: 10,
+      paginationActiveId: 0,
     };
   }
 
