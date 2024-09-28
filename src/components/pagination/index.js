@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './styles.css';
 
-const Pagination = ({ total = 0, limit, getNextPages, onActive, active }) => {
+const Pagination = ({ total = 0, limit, loadPages, onActive, active }) => {
   const pages = Math.floor(total / limit);
 
   const buildPagination = (active, pages) => {
@@ -30,20 +30,16 @@ const Pagination = ({ total = 0, limit, getNextPages, onActive, active }) => {
   };
 
 
-  const getItemClass = (item) => {
-    if (active === item) {
-      return 'pagination-list_item-active';
-    }
-    return 'pagination-list_item';
-  };
+  const getItemClass = (item) => active === item ? 'pagination-list_item-active' : 'pagination-list_item';
 
   const handleClick = (page) => {
-    getNextPages(page * 10);
+    loadPages(page * 10);
     onActive(page);
   };
 
   useEffect(() => {
-    onActive(active);
+    loadPages();
+    onActive(0);
   }, []);
 
   return (
@@ -60,7 +56,9 @@ const Pagination = ({ total = 0, limit, getNextPages, onActive, active }) => {
 Pagination.propTypes = {
   total: PropTypes.number,
   limit: PropTypes.number,
-  getNextPages: PropTypes.func,
+  active: PropTypes.number,
+  loadPages: PropTypes.func,
+  onActive: PropTypes.func,
 }
 
 export default React.memo(Pagination);

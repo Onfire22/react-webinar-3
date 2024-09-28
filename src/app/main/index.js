@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import Item from '../../components/item';
 import PageLayout from '../../components/page-layout';
 import Head from '../../components/head';
@@ -21,9 +21,9 @@ function Main() {
      // Устанавливаем размер всех айтемов
      setItemsLength: useCallback(() => store.actions.catalog.setDataLength(), [store]),
      // Устанавливаем активную страницу пагинации
-     setPaginationPage: useCallback((id) => store.actions.catalog.setActiveId(id), [store]),
+     setPaginationPage: useCallback((id) => store.actions.catalog.setActivePage(id), [store]),
       // Получение страниц
-     getNextPages: useCallback((skip) => store.actions.catalog.loadNextItems(skip), [store]),
+     loadPages: useCallback((skip) => store.actions.catalog.loadItems(skip), [store]),
   };
   const renders = {
     item: useCallback(
@@ -38,7 +38,7 @@ function Main() {
     list: state.catalog.list,
     amount: state.basket.amount,
     sum: state.basket.sum,
-    active: state.catalog.paginationActiveId,
+    active: state.catalog.paginationActivePage,
     skip: state.catalog.paginationSkip,
     length: state.catalog.dataLength,
   }));
@@ -53,7 +53,7 @@ function Main() {
       <BasketTool lang={lang} onOpen={callbacks.openModalBasket} amount={select.amount} sum={select.sum} />
       <List list={select.list} renderItem={renders.item} />
       <Pagination
-        getNextPages={callbacks.getNextPages}
+        loadPages={callbacks.loadPages}
         total={select.length}
         limit={select.skip}
         onActive={callbacks.setPaginationPage}

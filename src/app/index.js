@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import Main from './main';
 import Basket from './basket';
 import ItemPage from './item-page';
@@ -20,23 +20,18 @@ function App() {
     // Открытие модалки корзины
     openModalBasket: useCallback(() => store.actions.modals.open('basket'), [store]),
     // Получение следующих страниц
-    getNextPages: useCallback((skip) => store.actions.catalog.loadNextItems(skip), [store]),
+    getPages: useCallback((skip) => store.actions.catalog.loadItems(skip), [store]),
   };
-  const select = useSelector(state => ({
-    list: state.catalog.list,
-    amount: state.basket.amount,
-    sum: state.basket.sum,
-  }));
   const activeModal = useSelector(state => state.modals.name);
 
   useEffect(() => {
-    callbacks.getNextPages();
+    callbacks.getPages();
   }, []);
 
   return (
     <LocalesProvider>
       <Routes>
-        <Route path={ROUTES.main()} element={<Main callbacks={callbacks} select={select} getNextPages={callbacks.getNextPages}/>} />
+        <Route path={ROUTES.main()} element={<Main />} />
         <Route path={ROUTES.items()} element={<ItemPage onOpen={callbacks.openModalBasket} onAdd={callbacks.addToBasket} />} />
         <Route path={ROUTES.notFound()} element={<NotFound />}/>
       </Routes>

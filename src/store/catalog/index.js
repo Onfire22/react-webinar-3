@@ -12,7 +12,7 @@ class Catalog extends StoreModule {
     return {
       list: [],
       paginationSkip: 10,
-      paginationActiveId: 0,
+      paginationActivePage: 0,
       dataLength: 0,
     };
   }
@@ -26,7 +26,7 @@ class Catalog extends StoreModule {
     });
   }
 
-  async loadNextItems(skip = 0) {
+  async loadItems(skip = 0) {
     const response = await fetch(API_ROUTES.getNextItems(skip));
     const json = await response.json();
     this.setState({
@@ -35,10 +35,10 @@ class Catalog extends StoreModule {
     }, 'Загружены товары из АПИ');
   }
 
-  setActiveId(id) {
+  setActivePage(id) {
     this.setState({
       ...this.getState(),
-      paginationActiveId: id,
+      paginationActivePage: id,
     });
   }
 }
