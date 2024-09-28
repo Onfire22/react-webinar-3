@@ -36,6 +36,13 @@ class Catalog extends StoreModule {
       list: json.result.items,
     });
   }
+
+  setActiveId(id) {
+    this.setState({
+      ...this.getState(),
+      paginationActiveId: id,
+    });
+  }
 }
 
 export default Catalog;

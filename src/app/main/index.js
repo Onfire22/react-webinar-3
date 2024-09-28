@@ -7,8 +7,11 @@ import List from '../../components/list';
 import Pagination from '../../components/pagination';
 import useLocales from '../../hooks';
 import { API_ROUTES, ROUTES } from '../../routes';
+import useSelector from '../../store/use-selector';
+import useStore from '../../store/use-store';
 
 function Main({ callbacks, select, getNextPages }) {
+  const store = useStore();
   const [dataLength, setDataLength] = useState(0);
   const { lang } = useLocales();
   const renders = {
@@ -19,6 +22,9 @@ function Main({ callbacks, select, getNextPages }) {
       [callbacks.addToBasket],
     ),
   };
+
+  const getActive = useCallback((id) => store.actions.catalog.setActiveId(id), [store]);
+  const active = useSelector(state => state.catalog.paginationActiveId);
 
   useEffect(() => {
     fetch(API_ROUTES.getAllItems())
@@ -35,6 +41,8 @@ function Main({ callbacks, select, getNextPages }) {
         getNextPages={getNextPages}
         total={dataLength}
         limit={10}
+        onActive={getActive}
+        active={active}
       />
     </PageLayout>
   );

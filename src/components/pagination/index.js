@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import './styles.css';
 
-const Pagination = ({ total, limit, getNextPages }) => {
-  const [active, setActive] = useState(0);
-
+const Pagination = ({ total, limit, getNextPages, onActive, active }) => {
   const pages = Math.floor(total / limit);
+
   const buildPagination = (active, pages) => {
     const arr = [...Array(pages).keys()];
     const pagination = {
@@ -40,12 +39,11 @@ const Pagination = ({ total, limit, getNextPages }) => {
 
   const handleClick = (page) => {
     getNextPages(page * 10);
-    setActive(page);
+    onActive(page);
   };
 
   useEffect(() => {
-    getNextPages();
-    setActive(0);
+    onActive(active);
   }, []);
 
   return (
