@@ -13,6 +13,7 @@ import useStore from '../../store/use-store';
 function Main() {
   const store = useStore();
   const { lang } = useLocales();
+
   const callbacks = {
      // Добавление в корзину
      addToBasket: useCallback(_id => store.actions.basket.addToBasket(_id), [store]),
@@ -25,12 +26,13 @@ function Main() {
       // Получение страниц
      loadPages: useCallback((skip) => store.actions.catalog.loadItems(skip), [store]),
   };
+
   const renders = {
     item: useCallback(
       item => {
         return <Item lang={lang} item={item} onAdd={callbacks.addToBasket} path={ROUTES.item(item._id)} />;
       },
-      [callbacks.addToBasket],
+      [callbacks.addToBasket, lang],
     ),
   };
 

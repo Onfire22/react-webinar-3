@@ -14,6 +14,7 @@ import LocalesProvider from '../i18nContext/localesProvider';
  */
 function App() {
   const store = useStore();
+
   const callbacks = {
     // Добавление в корзину
     addToBasket: useCallback(_id => store.actions.basket.addToBasket(_id), [store]),
