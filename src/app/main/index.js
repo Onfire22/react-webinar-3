@@ -17,7 +17,7 @@ function Main({ callbacks, select, getNextPages }) {
   const renders = {
     item: useCallback(
       item => {
-        return <Item item={item} onAdd={callbacks.addToBasket} path={ROUTES.item(item._id)} />;
+        return <Item lang={lang} item={item} onAdd={callbacks.addToBasket} path={ROUTES.item(item._id)} />;
       },
       [callbacks.addToBasket],
     ),
@@ -35,7 +35,7 @@ function Main({ callbacks, select, getNextPages }) {
   return (
     <PageLayout>
       <Head title={lang.titles.store}/>
-      <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount} sum={select.sum} />
+      <BasketTool lang={lang} onOpen={callbacks.openModalBasket} amount={select.amount} sum={select.sum} />
       <List list={select.list} renderItem={renders.item} />
       <Pagination
         getNextPages={getNextPages}

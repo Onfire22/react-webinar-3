@@ -8,11 +8,12 @@ import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import useStore from '../../store/use-store';
-import './styles.css';
+import useLocales from '../../hooks';
 
 const ItemPage = ({ onOpen = () => {}, onAdd = () => {} }) => {
   const store = useStore();
   const { id } = useParams();
+  const { lang } = useLocales();
 
   const select = useSelector(state => ({
     amount: state.basket.amount,
@@ -33,8 +34,8 @@ const ItemPage = ({ onOpen = () => {}, onAdd = () => {} }) => {
       {select.item && Object.keys(select.item).length > 0 &&
         <PageLayout>
           <Head title={select.item.title} />
-          <BasketTool onOpen={onOpen} amount={select.amount} sum={select.sum} />
-          <PageContent item={select.item} onAdd={onAdd} />
+          <BasketTool lang={lang} onOpen={onOpen} amount={select.amount} sum={select.sum} />
+          <PageContent lang={lang} item={select.item} onAdd={onAdd} />
         </PageLayout>
       }
     </>

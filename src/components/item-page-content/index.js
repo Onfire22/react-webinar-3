@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import useLocales from '../../hooks';
 import './styles.css';
 
-const PageContent = ({ item = {}, onAdd = () => {} }) => {
-  const { lang } = useLocales();
+const PageContent = ({ item = {}, onAdd = () => {}, lang }) => {
 
   return (
     <div className="Content">

@@ -8,7 +8,6 @@ import useSelector from '../store/use-selector';
 import { Routes, Route } from 'react-router-dom';
 import { ROUTES } from '../routes';
 import LocalesProvider from '../i18nContext/localesProvider';
-
 /**
  * Приложение
  * @returns {React.ReactElement}

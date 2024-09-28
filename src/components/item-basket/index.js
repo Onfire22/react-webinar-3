@@ -3,12 +3,10 @@ import { numberFormat } from '../../utils';
 import { cn as bem } from '@bem-react/classname';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import useLocales from '../../hooks';
 import './style.css';
 
 function ItemBasket(props = {}) {
   const cn = bem('ItemBasket');
-  const { lang } = useLocales();
 
   const callbacks = {
     onRemove: e => props.onRemove(props.item._id),
@@ -19,9 +17,9 @@ function ItemBasket(props = {}) {
       <Link to={props.path} className={cn('title')} onClick={() => props.onClose()}>{props.item.title}</Link>
       <div className={cn('right')}>
         <div className={cn('cell')}>{numberFormat(props.item.price)} ₽</div>
-        <div className={cn('cell')}>{numberFormat(props.item.amount || 0)} {lang.item.count}</div>
+        <div className={cn('cell')}>{numberFormat(props.item.amount || 0)} {props.lang.item.count}</div>
         <div className={cn('cell')}>
-          <button onClick={callbacks.onRemove}>{lang.buttons.delete}</button>
+          <button onClick={callbacks.onRemove}>{props.lang.buttons.delete}</button>
         </div>
       </div>
     </div>

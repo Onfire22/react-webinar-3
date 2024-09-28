@@ -4,11 +4,9 @@ import { cn as bem } from '@bem-react/classname';
 import { numberFormat } from '../../utils';
 import LinkToMainPage from '../link-to-main-page';
 import { ROUTES } from '../../routes';
-import useLocales from '../../hooks/index';
 import './style.css';
 
-function BasketTool({ sum = 0, amount = 0, onOpen = () => {} }) {
-  const { lang } = useLocales();
+function BasketTool({ sum = 0, amount = 0, onOpen = () => {}, lang }) {
   const cn = bem('BasketTool');
 
   return (

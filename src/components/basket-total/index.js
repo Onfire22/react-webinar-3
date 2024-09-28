@@ -2,11 +2,9 @@ import { memo } from 'react';
 import PropTypes from 'prop-types';
 import { cn as bem } from '@bem-react/classname';
 import { numberFormat } from '../../utils';
-import useLocales from '../../hooks';
 import './style.css';
 
-function BasketTotal({ sum = 0 }) {
-  const { lang } = useLocales();
+function BasketTotal({ sum = 0, lang }) {
   const cn = bem('BasketTotal');
 
   return (
