@@ -10,6 +10,7 @@ LinkToMainPage.propTypes = {
   route: PropTypes.string,
   className: PropTypes.string,
   onClick: PropTypes.func,
+  title: PropTypes.string,
 };
 
 export default LinkToMainPage;
