@@ -10,9 +10,21 @@ import { ROUTES } from '../../routes';
 import useSelector from '../../store/use-selector';
 import useStore from '../../store/use-store';
 
-function Main({ callbacks, select, getNextPages }) {
+function Main() {
   const store = useStore();
   const { lang } = useLocales();
+  const callbacks = {
+     // Добавление в корзину
+     addToBasket: useCallback(_id => store.actions.basket.addToBasket(_id), [store]),
+     // Открытие модалки корзины
+     openModalBasket: useCallback(() => store.actions.modals.open('basket'), [store]),
+     // Устанавливаем размер всех айтемов
+     setItemsLength: useCallback(() => store.actions.catalog.setDataLength(), [store]),
+     // Устанавливаем активную страницу пагинации
+     setPaginationPage: useCallback((id) => store.actions.catalog.setActiveId(id), [store]),
+      // Получение страниц
+     getNextPages: useCallback((skip) => store.actions.catalog.loadNextItems(skip), [store]),
+  };
   const renders = {
     item: useCallback(
       item => {
@@ -22,14 +34,17 @@ function Main({ callbacks, select, getNextPages }) {
     ),
   };
 
-  const getActive = useCallback((id) => store.actions.catalog.setActiveId(id), [store]);
-  const getItemsLength = useCallback(() => store.actions.catalog.setDataLength(), [store]);
-  const active = useSelector(state => state.catalog.paginationActiveId);
-  const skip = useSelector(state => state.catalog.paginationSkip);
-  const length = useSelector(state => state.catalog.dataLength);
+  const select = useSelector(state => ({
+    list: state.catalog.list,
+    amount: state.basket.amount,
+    sum: state.basket.sum,
+    active: state.catalog.paginationActiveId,
+    skip: state.catalog.paginationSkip,
+    length: state.catalog.dataLength,
+  }));
 
   useEffect(() => {
-    getItemsLength();
+    callbacks.setItemsLength();
   }, [])
 
   return (
@@ -38,11 +53,11 @@ function Main({ callbacks, select, getNextPages }) {
       <BasketTool lang={lang} onOpen={callbacks.openModalBasket} amount={select.amount} sum={select.sum} />
       <List list={select.list} renderItem={renders.item} />
       <Pagination
-        getNextPages={getNextPages}
-        total={length}
-        limit={skip}
-        onActive={getActive}
-        active={active}
+        getNextPages={callbacks.getNextPages}
+        total={select.length}
+        limit={select.skip}
+        onActive={callbacks.setPaginationPage}
+        active={select.active}
       />
     </PageLayout>
   );
