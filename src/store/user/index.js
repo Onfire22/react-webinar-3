@@ -41,32 +41,26 @@ class User extends StoreModule {
   }
 
   async reLogIn() {
-    if (this.getState().loggedIn) {
-      try {
-        const response = await fetch('/api/v1/users/self?fields=*', {
-          headers: {
-            "Content-Type": "application/json",
-            "X-Token": this.getState().token,
-          },
-        });
-        const { result } = await response.json();
-        console.log(response)
-        const user = {
-          email: result.email,
-          name: result.profile.name,
-          phone: result.profile.phone
-        };
-        this.setState({
-          ...this.getState(),
-          userData: user,
-          loggedIn: true,
-        });
-      } catch (e) {
-        this.setState({
-          ...this.getState(),
-          error: e.message,
-        });
-      }
+    try {
+      const response = await fetch('/api/v1/users/self?fields=*', {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Token": this.getState().token,
+        },
+      }); 
+      const { result } = await response.json();
+      const user = {
+        email: result.email,
+        name: result.profile.name,
+        phone: result.profile.phone
+      };
+      this.setState({
+        ...this.getState(),
+        userData: user,
+        loggedIn: true,
+      });
+    } catch (e) {
+      console.log(e)
     }
   }
 

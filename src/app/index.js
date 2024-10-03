@@ -18,13 +18,13 @@ function App() {
   const activeModal = useSelector(state => state.modals.name);
   const select = useSelector(state => ({
     token: state?.user?.token,
-    name: state?.user?.userData?.name,
+    loggedIn: state?.user.loggedIn, 
   }));
 
   const logIn = () => store.actions.user.reLogIn();
 
   useEffect(() => {
-    if (!select.loggedIn) {
+    if (localStorage.getItem('token')) {
       logIn();
     }
   }, []);
