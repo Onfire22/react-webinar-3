@@ -8,6 +8,7 @@ const Login = () => {
   const store = useStore();
   const select = useSelector((state) => ({
     name: state?.user?.userData?.name,
+    error: state?.user?.error,
   }));
 
   const logIn = (data) => store.actions.user.logIn(data);
@@ -15,7 +16,7 @@ const Login = () => {
   return (
     <PageLayout>
       <Head title="Магазин" name={select.name} />
-      <LoginForm onSubmit={logIn} />
+      <LoginForm error={select.error} onSubmit={logIn} />
     </PageLayout>
   );
 };

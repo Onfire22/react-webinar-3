@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './style.css';
 
-const LoginForm = ({ onSubmit }) => {
+const LoginForm = ({ onSubmit, error }) => {
   const navigate = useNavigate();
   const [values, setValues] = useState({
     login: '',
@@ -39,6 +39,7 @@ const LoginForm = ({ onSubmit }) => {
         </label>
         <button type="submit">Войти</button>
       </form>
+      {error && <div className="Form-feedback">{error}</div>}
     </div>
   );  
 };
