@@ -50,6 +50,7 @@ class User extends StoreModule {
           },
         });
         const { result } = await response.json();
+        console.log(response)
         const user = {
           email: result.email,
           name: result.profile.name,
@@ -71,7 +72,7 @@ class User extends StoreModule {
 
   async logOut() {
     try {
-      await fetch('/api/v1/users/self?fields=*', {
+      await fetch('/api/v1/users/sign', {
         method: 'DELETE',
         headers: {
           "Content-Type": "application/json",
