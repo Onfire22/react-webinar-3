@@ -58,11 +58,4 @@ Pagination.propTypes = {
   makeLink: PropTypes.func,
 };
 
-Pagination.defaultProps = {
-  page: 1,
-  limit: 10,
-  count: 1000,
-  indent: 1,
-};
-
 export default memo(Pagination);

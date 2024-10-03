@@ -15,7 +15,7 @@ function Head({ title, children }) {
   const handleLogout = () => {
     logOut();
     navigate('/');
-  }
+  };
 
   return (
     <>

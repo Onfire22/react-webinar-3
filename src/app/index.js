@@ -5,8 +5,8 @@ import Main from './main';
 import Basket from './basket';
 import Article from './article';
 import Login from './login';
-import PrivateRoute from '../components/private-route';
-import UserPage from '../components/user-page';
+import PrivateRoute from './private-route';
+import UserPage from './user-page';
 import useStore from '../hooks/use-store';
 
 /**
