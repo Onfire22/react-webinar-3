@@ -1,0 +1,24 @@
+h2, p {
+  margin: 0;
+}
+
+.User-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.User-title {
+  margin-bottom: 10px;
+}
+
+.User-info {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.User-info_description {
+  font-weight: 700;
+}
