@@ -33,3 +33,30 @@ export function codeGenerator(start = 0) {
 export function numberFormat(value, locale = 'ru-RU', options = {}) {
   return new Intl.NumberFormat(locale, options).format(value);
 }
+
+export const buildTree = (data) => {
+  const root = data.filter(item => !item.parent);
+  data.forEach((item) => {
+    if (item.parent) {
+      const parentIndex = data.findIndex((elem) => elem._id === item.parent._id);
+      if (!data[parentIndex].children) {
+        data[parentIndex].children = [item];
+      } else {
+        data[parentIndex].children.push(item);
+      }
+    }
+  })
+  return root;
+};
+
+export const prepareOptions = (tree) => {
+  const iter = (tree, depth = 0) => {
+    return tree.flatMap((node) => {
+      if (!node.children) {
+        return { ...node, value: node._id, title: `${'-'.repeat(depth)} ${node.title}` };
+      }
+      return [{ ...node, value: node._id, title: `${'-'.repeat(depth)} ${node.title}` }, ...iter(node.children, depth + 1)];
+    })
+  }
+  return iter(tree, 0);
+};
