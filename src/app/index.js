@@ -18,7 +18,6 @@ function App() {
   const activeModal = useSelector(state => state.modals.name);
   const select = useSelector(state => ({
     token: state?.user?.token,
-    loggedIn: state?.user.loggedIn, 
   }));
 
   const logIn = () => store.actions.user.reLogIn();

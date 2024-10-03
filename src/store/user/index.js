@@ -60,7 +60,10 @@ class User extends StoreModule {
         loggedIn: true,
       });
     } catch (e) {
-      console.log(e)
+      this.setState({
+        ...this.getState(),
+        error: e.message,
+      });
     }
   }
 
@@ -74,7 +77,7 @@ class User extends StoreModule {
         },
       });
       const initState = this.initState();
-      this.setState({
+      this.setState({ 
         initState,
       });
       localStorage.clear();

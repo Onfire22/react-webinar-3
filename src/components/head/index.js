@@ -30,7 +30,7 @@ function Head({ title, children }) {
           )
           :
           (
-              <button type="button" onClick={() => navigate('/login')}>Войти</button>
+            <button type="button" onClick={() => navigate('/login')}>Войти</button>
           )
         }
       </div>

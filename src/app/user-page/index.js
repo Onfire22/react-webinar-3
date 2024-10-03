@@ -7,7 +7,6 @@ import UserContent from "../../components/user-content";
 
 const UserPage = () => {
   const select = useSelector((state) => ({
-    loggedIn: state?.user?.loggedIn,
     email: state?.user?.userData?.email,
     phone: state?.user?.userData?.phone,
     name: state?.user?.userData?.name,
@@ -16,7 +15,7 @@ const UserPage = () => {
   return (
     <PageLayout>
       <Head name={select.name} title="Магазин">
-        <LocaleSelect />
+        <LocaleSelect />  
       </Head>
       <Navigation />
       <UserContent select={select} />
