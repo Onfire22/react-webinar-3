@@ -107,15 +107,15 @@ class CatalogState extends StoreModule {
       'Загружен список товаров из АПИ',
     );
   }
-  async getCatalogFilters () {
-    const response = await fetch('api/v1/categories?fields=_id,title,parent(_id)&limit=*');
-    const data = await response.json();
-    const tree = prepareOptions(buildTree(data.result.items));
-    this.setState({
-      ...this.getState(),
-      filters: tree,
-    });
-  }
+  // async getCatalogFilters () {
+  //   const response = await fetch('api/v1/categories?fields=_id,title,parent(_id)&limit=*');
+  //   const data = await response.json();
+  //   const tree = prepareOptions(buildTree(data.result.items));
+  //   this.setState({
+  //     ...this.getState(),
+  //     filters: tree,
+  //   });
+  // }
 }
 
 export default CatalogState;
