@@ -12,7 +12,7 @@ const LoginForm = ({ onSubmit, error }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(values)
-      .then(() => navigate('/profile'));
+      .then(() => navigate(-1));
   };
 
   return (
