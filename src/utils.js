@@ -53,9 +53,9 @@ export const prepareOptions = (tree) => {
   const iter = (tree, depth = 0) => {
     return tree.flatMap((node) => {
       if (!node.children) {
-        return { ...node, value: node._id, title: `${'-'.repeat(depth)} ${node.title}` };
+        return { ...node, value: node._id, title: `${'- '.repeat(depth)} ${node.title}` };
       }
-      return [{ ...node, value: node._id, title: `${'-'.repeat(depth)} ${node.title}` }, ...iter(node.children, depth + 1)];
+      return [{ ...node, value: node._id, title: `${'- '.repeat(depth)} ${node.title}` }, ...iter(node.children, depth + 1)];
     })
   }
   return iter(tree, 0);

@@ -3,6 +3,7 @@ import PageLayout from "../../components/page-layout";
 import LoginForm from "../../components/login-form";
 import useSelector from "../../hooks/use-selector";
 import useStore from "../../hooks/use-store";
+import Navigation from "../../containers/navigation";
 
 const Login = () => {
   const store = useStore();
@@ -16,6 +17,7 @@ const Login = () => {
   return (
     <PageLayout>
       <Head title="Магазин" name={select.name} />
+      <Navigation />
       <LoginForm error={select.error} onSubmit={logIn} />
     </PageLayout>
   );

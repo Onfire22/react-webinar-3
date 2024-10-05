@@ -37,9 +37,9 @@ const LoginForm = ({ onSubmit, error }) => {
             onChange={({ target }) => setValues({...values, password: target.value})}
           />
         </label>
+        {error && <div className="Form-feedback">{error}</div>}
         <button type="submit">Войти</button>
       </form>
-      {error && <div className="Form-feedback">{error}</div>}
     </div>
   );  
 };
