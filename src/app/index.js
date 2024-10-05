@@ -19,14 +19,12 @@ function App() {
   const select = useSelector(state => ({
     token: state?.user?.token,
   }));
+  
+  const logIn = useCallback(() => store.actions.user.reLogIn(), [store]);
 
-  const logIn = () => store.actions.user.reLogIn();
-
-  // useEffect(() => {
-  //   if (localStorage.getItem('token')) {
-  //     logIn();
-  //   }
-  // }, []);
+  useEffect(() => {
+    logIn();
+  }, []);
 
   return (
     <>

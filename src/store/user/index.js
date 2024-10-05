@@ -11,6 +11,8 @@ class User extends StoreModule {
   }
 
   async logIn(data) {
+    const token = localStorage.getItem('token');
+    if (token) return;
     try {
       const response = await fetch('/api/v1/users/sign', {
         method: 'POST',
@@ -36,24 +38,31 @@ class User extends StoreModule {
   }
 
   async reLogIn() {
-    try {
-      const response = await fetch('/api/v1/users/self?fields=*', {
-        headers: {
-          "Content-Type": "application/json",
-          "X-Token": this.getState().token,
-        },
-      }); 
-      const { result } = await response.json();
+    const token = localStorage.getItem('token');
+    console.log('token', token)
+    if (token) {
       this.setState({
         ...this.getState(),
-        username: result.user.profile.name,
         loggedIn: true,
-      });
-    } catch (e) {
-      this.setState({
-        ...this.getState(),
-        error: e.message,
-      });
+      })
+      try {
+        const response = await fetch('/api/v1/users/self?fields=*', {
+          headers: {
+            "Content-Type": "application/json",
+            "X-Token": token, 
+          },
+        }); 
+        const { result } = await response.json();
+        this.setState({
+          ...this.getState(),
+          username: result.profile.name,
+        });
+      } catch (e) {
+        this.setState({
+          ...this.getState(),
+          error: e.message,
+        });
+      }
     }
   }
 
