@@ -4,13 +4,24 @@ import useSelector from "../../hooks/use-selector";
 import Head from "../../components/head";
 import PageLayout from "../../components/page-layout";
 import UserContent from "../../components/user-content";
+import useStore from "../../hooks/use-store";
+import { useCallback, useEffect } from "react";
 
 const UserPage = () => {
+  const store = useStore();
+  
+  const getUser = useCallback(() => store.actions.profile.getUser(), [store]);
+
   const select = useSelector((state) => ({
-    email: state?.user?.userData?.email,
-    phone: state?.user?.userData?.phone,
-    name: state?.user?.userData?.name,
+    name: state?.profile?.user?.name,
+    email: state?.profile?.user?.email,
+    phone: state?.profile?.user?.phone,
   }));
+
+  
+  useEffect(() => {
+    getUser();
+  }, []);
 
   return (
     <PageLayout>

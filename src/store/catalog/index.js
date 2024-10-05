@@ -113,7 +113,7 @@ class CatalogState extends StoreModule {
     const tree = prepareOptions(buildTree(data.result.items));
     this.setState({
       ...this.getState(),
-      filters: tree,  
+      filters: tree,
     });
   }
 }

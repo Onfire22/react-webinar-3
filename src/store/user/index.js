@@ -4,7 +4,7 @@ class User extends StoreModule {
   initState() {
     return {
       token: localStorage.getItem('token'),
-      userData: {},
+      username: '',
       loggedIn: false,
       error: null,
     }
@@ -20,15 +20,10 @@ class User extends StoreModule {
         body: JSON.stringify(data),
       });
       const { result } = await response.json();
-      const user = {
-        email: result.user.email,
-        name: result.user.profile.name,
-        phone: result.user.profile.phone
-      }
       this.setState({
         ...this.getState(),
         token: result.token,
-        userData: user,
+        username: result.user.profile.name,
         loggedIn: true,
       }, 'token added');
       localStorage.setItem('token', result.token);
@@ -49,14 +44,9 @@ class User extends StoreModule {
         },
       }); 
       const { result } = await response.json();
-      const user = {
-        email: result.email,
-        name: result.profile.name,
-        phone: result.profile.phone
-      };
       this.setState({
         ...this.getState(),
-        userData: user,
+        username: result.user.profile.name,
         loggedIn: true,
       });
     } catch (e) {

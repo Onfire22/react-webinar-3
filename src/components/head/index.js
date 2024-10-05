@@ -8,7 +8,7 @@ import useStore from '../../hooks/use-store';
 function Head({ title, children }) {
   const store = useStore();
   const navigate = useNavigate();
-  const name = useSelector((state) => state?.user?.userData?.name);
+  const name = useSelector((state) => state?.user?.username);
   const loggedIn = useSelector((state) => state.user.loggedIn);
   const logOut = useCallback(() => store.actions.user.logOut(), [store]);
 

@@ -22,11 +22,11 @@ function App() {
 
   const logIn = () => store.actions.user.reLogIn();
 
-  useEffect(() => {
-    if (localStorage.getItem('token')) {
-      logIn();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.getItem('token')) {
+  //     logIn();
+  //   }
+  // }, []);
 
   return (
     <>
