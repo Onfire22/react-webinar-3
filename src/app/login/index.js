@@ -1,3 +1,4 @@
+import React, { useCallback } from "react";
 import Head from "../../components/head";
 import PageLayout from "../../components/page-layout";
 import LoginForm from "../../components/login-form";
@@ -21,7 +22,7 @@ const Login = () => {
     if (select.loggedIn) navigate(-1);
   }, []);
 
-  const logIn = (data) => store.actions.user.logIn(data);
+  const logIn = useCallback((data) => store.actions.user.logIn(data), [store]);
 
   return (
     <PageLayout>
@@ -32,4 +33,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default React.memo(Login);

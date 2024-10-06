@@ -1,3 +1,4 @@
+import React from "react";
 import LocaleSelect from "../../containers/locale-select";
 import Navigation from "../../containers/navigation";
 import useSelector from "../../hooks/use-selector";
@@ -34,4 +35,4 @@ const UserPage = () => {
   );
 };
 
-export default UserPage;
+export default React.memo(UserPage);

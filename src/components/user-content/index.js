@@ -1,3 +1,4 @@
+import React from 'react';
 import './style.css';
 
 const userContent = ({ select }) => {
@@ -20,4 +21,4 @@ const userContent = ({ select }) => {
   );
 };
 
-export default userContent;
+export default React.memo(userContent);

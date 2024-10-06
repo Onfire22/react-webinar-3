@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './style.css';
@@ -49,4 +50,4 @@ const LoginForm = ({ onSubmit, error, status }) => {
   );  
 };
 
-export default LoginForm;
+export default React.memo(LoginForm);
