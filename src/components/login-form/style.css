@@ -10,8 +10,10 @@
 }
 
 .Form-input {
+  display: block;
+  padding: 0;
   width: 203px;
-  height: 26px;
+  padding: 3px 3px 5px;
 }
 
 .Form-feedback {

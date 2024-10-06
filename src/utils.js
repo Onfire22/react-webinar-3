@@ -35,6 +35,7 @@ export function numberFormat(value, locale = 'ru-RU', options = {}) {
 }
 
 export const buildTree = (data) => {
+  console.log(data)
   const root = data.filter(item => !item.parent);
   data.forEach((item) => {
     if (item.parent) {
