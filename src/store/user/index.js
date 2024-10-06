@@ -5,6 +5,7 @@ class User extends StoreModule {
     return {
       token: localStorage.getItem('token'),
       username: '',
+      status: 'idle',
       loggedIn: false,
       error: null,
     }
@@ -21,17 +22,22 @@ class User extends StoreModule {
         },
         body: JSON.stringify(data),
       });
-      const { result } = await response.json();
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(result.error.data.issues[0].message);
+      }
       this.setState({
         ...this.getState(),
-        token: result.token,
-        username: result.user.profile.name,
+        token: result.result.token,
+        username: result.result.user.profile.name,
+        status: 'success',
         loggedIn: true,
       }, 'token added');
-      localStorage.setItem('token', result.token);
+      localStorage.setItem('token', result.result.token);
     } catch (e) {
       this.setState({
-        ...this.getState(),
+        ...this.initState(),
+        status: 'failed',
         error: e.message,
       });
     }
@@ -39,11 +45,11 @@ class User extends StoreModule {
 
   async reLogIn() {
     const token = localStorage.getItem('token');
-    console.log('token', token)
     if (token) {
       this.setState({
         ...this.getState(),
         loggedIn: true,
+        status: 'idle',
       })
       try {
         const response = await fetch('/api/v1/users/self?fields=*', {
@@ -51,16 +57,21 @@ class User extends StoreModule {
             "Content-Type": "application/json",
             "X-Token": token, 
           },
-        }); 
-        const { result } = await response.json();
+        });
+        const result = await response.json();
+        if (!response.ok) {
+          throw new Error(result.error.data.issues[0].message);
+        }
         this.setState({
           ...this.getState(),
-          username: result.profile.name,
+          status: 'success',
+          username: result.result.profile.name,
         });
       } catch (e) {
         this.setState({
           ...this.getState(),
-          error: e.message,
+          status: 'failed',
+          error: result.error.data.issues[0].message,
         });
       }
     }
@@ -76,7 +87,7 @@ class User extends StoreModule {
         },
       });
       const initState = this.initState();
-      this.setState({ 
+      this.setState({
         initState,
       });
       localStorage.clear();

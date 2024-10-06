@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './style.css';
 
-const LoginForm = ({ onSubmit, error }) => {
+const LoginForm = ({ onSubmit, error, status }) => {
   const navigate = useNavigate();
   const [values, setValues] = useState({
     login: '',
@@ -11,9 +11,14 @@ const LoginForm = ({ onSubmit, error }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(values)
-      .then(() => navigate(-1));
+    onSubmit(values);
   };
+
+  useEffect(() => {
+    if (status === 'success') {
+      navigate(-1);
+    }
+  }, [status])
 
   return (
     <div className="Form-container">

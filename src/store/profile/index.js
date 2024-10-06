@@ -18,11 +18,11 @@ class Profile extends StoreModule {
             "X-Token": token,
           },
         });
-        const { result } = await response.json();
+        const result = await response.json();
         const userInfo = {
-          email: result.email,
-          name: result.profile.name,
-          phone: result.profile.phone
+          email: result.result.email,
+          name: result.result.profile.name,
+          phone: result.result.profile.phone
         };
         this.setState({
           ...this.getState(),

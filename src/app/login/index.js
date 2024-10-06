@@ -13,6 +13,7 @@ const Login = () => {
   const select = useSelector((state) => ({
     name: state?.user?.userData?.name,
     loggedIn: state?.user?.loggedIn,
+    status: state?.user?.status,
     error: state?.user?.error,
   }));
 
@@ -26,7 +27,7 @@ const Login = () => {
     <PageLayout>
       <Head title="Магазин" name={select.name} />
       <Navigation />
-      <LoginForm error={select.error} onSubmit={logIn} />
+      <LoginForm status={select.status} error={select.error} onSubmit={logIn} />
     </PageLayout>
   );
 };
