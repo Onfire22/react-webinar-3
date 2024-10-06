@@ -6,7 +6,7 @@ const PrivateRoute = ({ children }) => {
   const loggedIn = useSelector((state) => state.user.loggedIn);
 
   if (!loggedIn) {
-    return <Navigate to='/login' />
+    return <Navigate to='/login' replace />
   }
   return children;
 };

@@ -15,14 +15,16 @@ const Login = () => {
     error: state?.user?.error,
   }));
 
-  const logIn = useCallback((data) => store.actions.user.logIn(data), [store]);
-  const reset = useCallback(() => store.actions.user.resetError(), [store]);
+  const callbacks = {
+    logIn: useCallback((data) => store.actions.user.logIn(data), [store]),
+    reset: useCallback(() => store.actions.user.resetError(), [store]),
+  };
 
   return (
     <PageLayout>
       <Head title="Магазин" name={select.name} />
       <Navigation />
-      <LoginForm status={select.status} error={select.error} onSubmit={logIn} reset={reset} />
+      <LoginForm status={select.status} error={select.error} onSubmit={callbacks.logIn} reset={callbacks.reset} />
     </PageLayout>
   );
 };

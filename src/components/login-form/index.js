@@ -18,7 +18,7 @@ const LoginForm = ({ onSubmit, error, status, reset }) => {
 
   useEffect(() => {
     if (status === 'success') {
-      navigate(-1);
+      navigate('/profile');
     }
   }, [status]);
 

@@ -5,7 +5,7 @@ const LoginRoute = ({ children }) => {
   const loggedIn = useSelector((state) => state.user.loggedIn);
 
   if (!loggedIn) {
-    <Navigate to="/login" />
+    <Navigate to="/login" replace />
   }
   return children;
 };
