@@ -98,6 +98,13 @@ class User extends StoreModule {
       });
     }
   }
+
+  resetError() {
+    this.setState({
+      ...this.getState(),
+      error: null,
+    });
+  }
 }
 
 export default User;

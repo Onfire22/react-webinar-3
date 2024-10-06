@@ -5,12 +5,9 @@ import LoginForm from "../../components/login-form";
 import useSelector from "../../hooks/use-selector";
 import useStore from "../../hooks/use-store";
 import Navigation from "../../containers/navigation";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
 const Login = () => {
   const store = useStore();
-  const navigate = useNavigate();
   const select = useSelector((state) => ({
     name: state?.user?.userData?.name,
     loggedIn: state?.user?.loggedIn,
@@ -18,17 +15,14 @@ const Login = () => {
     error: state?.user?.error,
   }));
 
-  useEffect(() => {
-    if (select.loggedIn) navigate(-1);
-  }, []);
-
   const logIn = useCallback((data) => store.actions.user.logIn(data), [store]);
+  const reset = useCallback(() => store.actions.user.resetError(), [store]);
 
   return (
     <PageLayout>
       <Head title="Магазин" name={select.name} />
       <Navigation />
-      <LoginForm status={select.status} error={select.error} onSubmit={logIn} />
+      <LoginForm status={select.status} error={select.error} onSubmit={logIn} reset={reset} />
     </PageLayout>
   );
 };

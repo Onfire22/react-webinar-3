@@ -8,6 +8,7 @@ import Login from './login';
 import PrivateRoute from './private-route';
 import UserPage from './user-page';
 import useStore from '../hooks/use-store';
+import LoginRoute from './login-route';
 
 /**
  * Приложение
@@ -16,9 +17,6 @@ import useStore from '../hooks/use-store';
 function App() {
   const store = useStore();
   const activeModal = useSelector(state => state.modals.name);
-  const select = useSelector(state => ({
-    token: state?.user?.token,
-  }));
   
   const logIn = useCallback(() => store.actions.user.reLogIn(), [store]);
 
@@ -31,9 +29,13 @@ function App() {
       <Routes>
         <Route path={''} element={<Main />} />
         <Route path={'/articles/:id'} element={<Article />} />
-        <Route path={'/login'} element={<Login />} />
+        <Route path={'/login'} element={(
+          <LoginRoute>
+            <Login />
+          </LoginRoute>
+        )} />
         <Route path={'/profile'} element={(
-          <PrivateRoute token={select.token}>
+          <PrivateRoute>
             <UserPage />
           </PrivateRoute>
         )} />

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './style.css';
 
-const LoginForm = ({ onSubmit, error, status }) => {
+const LoginForm = ({ onSubmit, error, status, reset }) => {
   const navigate = useNavigate();
+  const inputRef = useRef(null);
   const [values, setValues] = useState({
     login: '',
     password: '',
@@ -19,7 +20,12 @@ const LoginForm = ({ onSubmit, error, status }) => {
     if (status === 'success') {
       navigate(-1);
     }
-  }, [status])
+  }, [status]);
+
+  useEffect(() => {
+    inputRef.current.focus();
+    reset();
+  }, []);
 
   return (
     <div className="Form-container">
@@ -28,8 +34,10 @@ const LoginForm = ({ onSubmit, error, status }) => {
         <label className="form-label" htmlFor="login">
           Логин
           <input
+            className="Form-input"
             id="login"
             type="text"
+            ref={inputRef}
             value={values.login}
             onChange={({ target }) => setValues({...values, login: target.value})}
           />
@@ -37,6 +45,7 @@ const LoginForm = ({ onSubmit, error, status }) => {
         <label className="form-label" htmlFor="password">
           Пароль
           <input
+            className="Form-input"
             id="password"
             type="password"
             value={values.password}
