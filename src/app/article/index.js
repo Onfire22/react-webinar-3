@@ -10,9 +10,12 @@ import Spinner from '../../components/spinner';
 import ArticleCard from '../../components/article-card';
 import LocaleSelect from '../../containers/locale-select';
 import TopHead from '../../containers/top-head';
+import Comments from '../../components/comments';
 import { useDispatch, useSelector } from 'react-redux';
 import shallowequal from 'shallowequal';
 import articleActions from '../../store-redux/article/actions';
+import loadCommentsAction from '../../store-redux/comments/actions';
+import SideLayout from '../../components/side-layout';
 
 function Article() {
   const store = useStore();
@@ -25,6 +28,7 @@ function Article() {
   useInit(() => {
     //store.actions.article.load(params.id);
     dispatch(articleActions.load(params.id));
+    dispatch(loadCommentsAction(params.id));
   }, [params.id]);
 
   const select = useSelector(
@@ -52,6 +56,7 @@ function Article() {
       <Spinner active={select.waiting}>
         <ArticleCard article={select.article} onAdd={callbacks.addToBasket} t={t} />
       </Spinner>
+      <Comments />
     </PageLayout>
   );
 }

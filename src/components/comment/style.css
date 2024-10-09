@@ -1,0 +1,38 @@
+p {
+  margin: 0;
+}
+
+.Comment {
+  color: rgb(0, 0, 0);
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 400;
+  margin-bottom: 30px;
+}
+
+.Comment-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.Comment-author {
+  font-weight: 700;
+}
+.Comment-date {
+  color: rgb(102, 102, 102);
+}
+.Comment-text {
+  padding: 10px 0 10px;
+  line-height: 16px;
+  font-size: 14px;
+}
+
+.Comment-reply {
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  cursor: pointer;
+  color: rgb(0, 135, 233);
+  text-decoration: underline;
+}
