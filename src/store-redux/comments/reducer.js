@@ -9,6 +9,8 @@ const comments = (state = initialState, action) => {
       return { ...state, comments: action.payload.data, waiting: false, };
     case 'comments/load-error':
       return { ...state, comments: [], waiting: false, };
+    case 'comments/new-comment':
+      return { ...state, comments: [...state.comments, action.payload], waiting: false, };
     default:
       return state;
   }

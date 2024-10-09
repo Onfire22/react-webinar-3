@@ -1,13 +1,15 @@
 import { useSelector as useSelectorRedux } from "react-redux";
 import Comment from "../comment";
+import CommentInput from "../comment-input";
 import { Link } from "react-router-dom";
 import formateDate from "../../utils/dateFormantter";
 import useSelector from "../../hooks/use-selector";
 import listToTree from "../../utils/list-to-tree";
 import treeToList from "../../utils/tree-to-list";
 
-const Comments = () => {
+const Comments = ({ articleId }) => {
   const { comments } = useSelectorRedux((state) => state.comments);
+  console.log(comments)
   const exists = useSelector((state) => state.session.exists);
   const data = treeToList(listToTree(comments), (item, level) => ({
     author: item.author?.profile.name,
@@ -36,11 +38,13 @@ const Comments = () => {
         })}
       </div>
       {
-        !exists &&
+        !exists ?
         <>
           <Link to="/login">Войдите</Link>
           <span>, чтобы иметь возможность комментировать</span>
         </>
+        :
+        <CommentInput id={articleId} />
       }
     </>
   );
