@@ -3,10 +3,8 @@ export default {
     type: 'comment/input',
     payload: { text },
   }),
-  open: () => ({
-    type: 'comment/open',
-  }),
-  close: () => ({
-    type: 'comment/close',
+  setParentId: (id) => ({
+    type: 'comment/setParent',
+    payload: id,
   }),
 };

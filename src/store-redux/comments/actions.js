@@ -11,7 +11,7 @@ export default {
       }
     };
   },
-  createComment: (text, _id, parent) => {
+  createComment: (text, _id) => {
     return async (dispatch, getState, services) => {
       const comment = {
         text,
@@ -27,5 +27,5 @@ export default {
         dispatch({ type: 'comments/new-comment', payload: response.data.result });
       }
     };
-  }
+  },
 }

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 const CommentInput = ({ id }) => {
   const dispatch = useDispatch();
   const text = useSelector((state) => state.commentsInput.text);
-
+ // toDo: REFACTOR TO OWN STATE
   const handleInput = (e) => {
     dispatch(inputHandler.input(e.target.value));
   };
@@ -14,7 +14,8 @@ const CommentInput = ({ id }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(newCommentActions.createComment(text, id));
-  }
+    dispatch(inputHandler.input(''));
+  };
 
   return (
     <form className="CommentForm" onSubmit={handleSubmit}>

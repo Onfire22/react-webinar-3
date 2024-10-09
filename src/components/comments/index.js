@@ -16,6 +16,7 @@ const Comments = ({ articleId }) => {
     date: item.dateCreate,
     text: item.text,
     id: item._id,
+    parent: item.parent,
     depth: level * 30,
   }));
 
@@ -32,6 +33,7 @@ const Comments = ({ articleId }) => {
               username={comment.author}
               date={formateDate(comment.date)}
               text={comment.text}
+              parent={comment.parent}
               depth={comment.depth}
             />
           );
