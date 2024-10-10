@@ -11,11 +11,11 @@ export default {
       }
     };
   },
-  createComment: (text, _id) => {
+  createComment: (text, _id, type) => {
     return async (dispatch, getState, services) => {
       const comment = {
         text,
-        parent: { _id, _type: 'article' },
+        parent: { _id, _type: type },
       };
       const token = localStorage.getItem('token');
       if (token) {
@@ -24,6 +24,7 @@ export default {
           method: 'POST',
           body: JSON.stringify(comment),
         });
+        console.log(response)
         dispatch({ type: 'comments/new-comment', payload: response.data.result });
       }
     };

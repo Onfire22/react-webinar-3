@@ -6,23 +6,24 @@ import formateDate from "../../utils/dateFormantter";
 import useSelector from "../../hooks/use-selector";
 import listToTree from "../../utils/list-to-tree";
 import treeToList from "../../utils/tree-to-list";
+import './style.css';
 
 const Comments = ({ articleId }) => {
   const { comments } = useSelectorRedux((state) => state.comments);
-  console.log(comments)
   const exists = useSelector((state) => state.session.exists);
-  const data = treeToList(listToTree(comments), (item, level) => ({
-    author: item.author?.profile.name,
-    date: item.dateCreate,
-    text: item.text,
-    id: item._id,
-    parent: item.parent,
-    depth: level * 30,
-  }));
+  const data = treeToList(listToTree(comments), (item, level) => {
+    return {
+      author: item.author?.profile.name,
+      date: item.dateCreate,
+      text: item.text,
+      id: item._id,
+      level: (level - 1) * 30,
+    }
+  });
 
   return (
-    <>
-      <p>
+    <div className="Comments-container">
+      <p className="Comments-title">
         {`Комментарии (${comments.length})`}
       </p>
       <div>
@@ -30,11 +31,12 @@ const Comments = ({ articleId }) => {
           return (
             <Comment
               key={comment.id}
+              id={comment.id}
               username={comment.author}
               date={formateDate(comment.date)}
               text={comment.text}
-              parent={comment.parent}
-              depth={comment.depth}
+              depth={comment.level}
+              exists={exists}
             />
           );
         })}
@@ -46,9 +48,9 @@ const Comments = ({ articleId }) => {
           <span>, чтобы иметь возможность комментировать</span>
         </>
         :
-        <CommentInput id={articleId} />
+        <CommentInput id={articleId} type="article" />
       }
-    </>
+    </div>
   );
 };
 

@@ -1,14 +1,38 @@
+p {
+  margin: 0;
+}
+
 .CommentForm {
   width: 100%;
   display: flex;
   align-items: start;
   flex-direction: column;
   gap: 10px;
-  padding-bottom: 120px;
+}
+
+.CommentForm-title {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14px;
 }
 
 .CommentForm-input {
-  width: 80%;
+  width: 100%;
   height: 74px;
+  font-family: Arial;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
   resize: none;
+}
+
+.CommentForm-input:focus-visible {
+  outline: 1px solid rgb(102, 102, 102);
+  box-shadow: inset 0px 1px 4px 0px rgba(102, 102, 102, 0.1);
+}
+
+.CommentForm-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }

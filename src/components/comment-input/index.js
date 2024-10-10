@@ -1,27 +1,37 @@
 import './style.css';
-import inputHandler from '../../store-redux/new-comment/actions';
 import newCommentActions from '../../store-redux/comments/actions';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState, useRef, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { cn as bem } from '@bem-react/classname';
 
-const CommentInput = ({ id }) => {
+const CommentInput = ({ id, type, toggleOpen }) => {
+  const cn = bem('CommentForm');
   const dispatch = useDispatch();
-  const text = useSelector((state) => state.commentsInput.text);
- // toDo: REFACTOR TO OWN STATE
-  const handleInput = (e) => {
-    dispatch(inputHandler.input(e.target.value));
-  };
+  const inputRef = useRef(null);
+  const [text, setText] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(newCommentActions.createComment(text, id));
-    dispatch(inputHandler.input(''));
+    dispatch(newCommentActions.createComment(text, id, type));
+    setText('');
+    if (type === 'comment') {
+      toggleOpen();
+    }
   };
 
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
   return (
-    <form className="CommentForm" onSubmit={handleSubmit}>
-      <p>Новый комментарий</p>
-      <textarea className="CommentForm-input" value={text} onChange={(e) => handleInput(e)} />
-      <button>Отправить</button>
+    <form className={cn()} onSubmit={handleSubmit}>
+      {type === "article" && <p className={cn("title")}>Новый комментарий</p>}
+      {type === "comment" && <p className={cn("title")}>Новый ответ</p>}
+      <textarea className={cn("input")} value={text} onChange={({ target }) => setText(target.value)} ref={inputRef} />
+      <div className={cn("controls")}>
+        {(type === "article" || type === "comment") && <button type="submit">Отправить</button>}
+        {type === "comment" && <button type="button" onClick={toggleOpen}>Отменить</button>}
+      </div>
     </form>
   );
 };

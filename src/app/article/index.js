@@ -15,7 +15,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import shallowequal from 'shallowequal';
 import articleActions from '../../store-redux/article/actions';
 import commentsActions from '../../store-redux/comments/actions';
-import SideLayout from '../../components/side-layout';
 
 function Article() {
   const store = useStore();

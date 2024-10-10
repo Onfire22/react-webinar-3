@@ -1,18 +1,15 @@
 import { cn as bem } from "@bem-react/classname";
 import { useState } from 'react';
-import { useDispatch } from "react-redux";
-import inputHandler from '../../store-redux/new-comment/actions'
 import CommentInput from "../comment-input";
 import './style.css';
+import { Link } from "react-router-dom";
 
-const Comment = ({ username, date, text, depth, parent }) => {
+const Comment = ({ username, date, text, depth, id, exists }) => {
   const [open, setOpen] = useState(false);
-  const dispatch = useDispatch();
   const cn = bem('Comment');
 
-  const handleOpen = () => {
+  const toggleOpen = () => {
     setOpen((prev) => !prev);
-    dispatch(inputHandler.setParentId(parent._id));
   };
 
   return (
@@ -22,8 +19,15 @@ const Comment = ({ username, date, text, depth, parent }) => {
         <p className={cn("date")}>{date}</p>
       </div>
       <p className={cn("text")}>{text}</p>
-      {!open && <button className={cn("reply")} type="button" onClick={handleOpen}>Ответить</button>}
-      {open && <CommentInput />}
+      {!open && <button className={cn("reply")} type="button" onClick={toggleOpen}>Ответить</button>}
+      {open && exists && <CommentInput id={id} type="comment" toggleOpen={toggleOpen} />}
+      {open && !exists && (
+        <p className={cn("exists")}>
+          <Link to="/login">Войдите</Link>
+          <span>, чтобы иметь возможность ответить.</span>
+          <button className={cn('cancel')} type="button" onClick={toggleOpen}>Отмена</button>
+        </p>
+      ) }
     </div>
   );
 };
