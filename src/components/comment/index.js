@@ -23,7 +23,7 @@ const Comment = ({ username, date, text, depth, id, exists }) => {
       {open && exists && <CommentInput id={id} type="comment" toggleOpen={toggleOpen} />}
       {open && !exists && (
         <p className={cn("exists")}>
-          <Link to="/login">Войдите</Link>
+          <Link className="Nav-link" to="/login">Войдите</Link>
           <span>, чтобы иметь возможность ответить.</span>
           <button className={cn('cancel')} type="button" onClick={toggleOpen}>Отмена</button>
         </p>

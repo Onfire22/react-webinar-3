@@ -44,7 +44,7 @@ const Comments = ({ articleId }) => {
       {
         !exists ?
         <>
-          <Link to="/login">Войдите</Link>
+          <Link className="Nav-link" to="/login">Войдите</Link>
           <span>, чтобы иметь возможность комментировать</span>
         </>
         :

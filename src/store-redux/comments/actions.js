@@ -17,16 +17,13 @@ export default {
         text,
         parent: { _id, _type: type },
       };
-      const token = localStorage.getItem('token');
-      if (token) {
-        const response = await services.api.request({
-          url: `api/v1/comments?fields=author(profile(name)),text,dateCreate,_id,children,parent(_id,_type)`,
-          method: 'POST',
-          body: JSON.stringify(comment),
-        });
-        console.log(response)
-        dispatch({ type: 'comments/new-comment', payload: response.data.result });
-      }
+      const response = await services.api.request({
+        url: `api/v1/comments?fields=author(profile(name)),text,dateCreate,_id,children,parent(_id,_type)`,
+        method: 'POST',
+        body: JSON.stringify(comment),
+      });
+      console.log(response)
+      dispatch({ type: 'comments/new-comment', payload: response.data.result });
     };
   },
 }

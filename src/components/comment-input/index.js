@@ -12,6 +12,10 @@ const CommentInput = ({ id, type, toggleOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!text.trim()) {
+      setText('');
+      return;
+    };
     dispatch(newCommentActions.createComment(text, id, type));
     setText('');
     if (type === 'comment') {
