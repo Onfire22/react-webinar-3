@@ -1,11 +1,11 @@
 import { useSelector as useSelectorRedux } from "react-redux";
 import Comment from "../comment";
 import CommentInput from "../comment-input";
-import { Link } from "react-router-dom";
 import formateDate from "../../utils/dateFormantter";
 import useSelector from "../../hooks/use-selector";
 import listToTree from "../../utils/list-to-tree";
 import treeToList from "../../utils/tree-to-list";
+import SignInLink from "../signin-link";
 import './style.css';
 
 const Comments = ({ articleId }) => {
@@ -44,7 +44,7 @@ const Comments = ({ articleId }) => {
       {
         !exists ?
         <>
-          <Link className="Nav-link" to="/login">Войдите</Link>
+          <SignInLink />
           <span>, чтобы иметь возможность комментировать</span>
         </>
         :

@@ -1,0 +1,11 @@
+.SignIn-button {
+  padding: 0;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  text-decoration: underline;
+  color: rgb(0, 135, 233);
+}

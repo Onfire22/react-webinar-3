@@ -2,7 +2,7 @@ import { cn as bem } from "@bem-react/classname";
 import { useState } from 'react';
 import CommentInput from "../comment-input";
 import './style.css';
-import { Link } from "react-router-dom";
+import SignInLink from "../signin-link";
 
 const Comment = ({ username, date, text, depth, id, exists }) => {
   const [open, setOpen] = useState(false);
@@ -23,7 +23,7 @@ const Comment = ({ username, date, text, depth, id, exists }) => {
       {open && exists && <CommentInput id={id} type="comment" toggleOpen={toggleOpen} />}
       {open && !exists && (
         <p className={cn("exists")}>
-          <Link className="Nav-link" to="/login">Войдите</Link>
+          <SignInLink />
           <span>, чтобы иметь возможность ответить.</span>
           <button className={cn('cancel')} type="button" onClick={toggleOpen}>Отмена</button>
         </p>
