@@ -3,7 +3,10 @@ p {
 }
 
 .CommentForm {
-  width: 100%;
+  box-sizing: border-box;
+  width: calc(100% - 20px);
+  margin: 0 auto;
+  margin-top: 30px;
   display: flex;
   align-items: start;
   flex-direction: column;
@@ -19,7 +22,7 @@ p {
 .CommentForm-input {
   box-sizing: border-box;
   width: 100%;
-  height: 74px;
+  height: 76px;
   font-family: Arial;
   font-size: 14px;
   font-weight: 400;

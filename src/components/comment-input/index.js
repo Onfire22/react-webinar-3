@@ -1,12 +1,9 @@
 import './style.css';
-import newCommentActions from '../../store-redux/comments/actions';
 import { useState, useRef, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { cn as bem } from '@bem-react/classname';
 
-const CommentInput = ({ id, type, toggleOpen }) => {
+const CommentInput = ({ type, onClose, onSubmit }) => {
   const cn = bem('CommentForm');
-  const dispatch = useDispatch();
   const inputRef = useRef(null);
   const [text, setText] = useState('');
 
@@ -16,15 +13,17 @@ const CommentInput = ({ id, type, toggleOpen }) => {
       setText('');
       return;
     };
-    dispatch(newCommentActions.createComment(text, id, type));
+    onSubmit(text);
     setText('');
     if (type === 'comment') {
-      toggleOpen();
+      onClose();
     }
   };
 
   useEffect(() => {
-    inputRef.current.focus();
+    if (type === 'comment') {
+      inputRef.current.focus();
+    }
   }, []);
 
   return (
@@ -34,7 +33,7 @@ const CommentInput = ({ id, type, toggleOpen }) => {
       <textarea className={cn("input")} value={text} onChange={({ target }) => setText(target.value)} ref={inputRef} />
       <div className={cn("controls")}>
         {(type === "article" || type === "comment") && <button type="submit">Отправить</button>}
-        {type === "comment" && <button type="button" onClick={toggleOpen}>Отменить</button>}
+        {type === "comment" && <button type="button" onClick={onClose}>Отменить</button>}
       </div>
     </form>
   );
