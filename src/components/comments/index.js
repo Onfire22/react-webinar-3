@@ -70,11 +70,7 @@ const Comments = ({ articleId }) => {
                 username={comment.author}
                 date={formateDate(comment.date)}
                 text={comment.text}
-                depth={comment.level}
-                exists={exists}
-                feedback={state.showAnswer}
                 onOpen={openAnswer}
-                onClose={closeAnswer}
               />
               {
                 state.placeForComment === comment.id && 
