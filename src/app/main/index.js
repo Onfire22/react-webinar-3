@@ -18,9 +18,12 @@ function Main() {
 
   const select = useSelector(state => ({
     list: state.catalog.list,
+    limit: state.catalog.limit,
+    currentPage: state.catalog.currentPage,
     amount: state.basket.amount,
     sum: state.basket.sum,
   }));
+  console.log(select);
 
   const callbacks = {
     // Добавление в корзину
