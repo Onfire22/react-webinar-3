@@ -12,11 +12,12 @@ class Catalog extends StoreModule {
       list: [],
       item: null,
       limit: null,
-      currentPage: 0,
+      currentPage: 1,
+      skip: 0,
     };
   }
 
-  async load(limit = 10, skip = 0) {
+  async load(skip = 0, limit = 10) {
     const response = await fetch(
       `/api/v1/articles?limit=${limit}&skip=${skip}&fields=items(_id, title, price),count`,
     );
@@ -46,6 +47,15 @@ class Catalog extends StoreModule {
     } catch (e) {
       console.warn(e);
     }
+  }
+
+  setPagination(currentPage) {
+    const skip = (currentPage - 1) * 10;
+    this.setState({
+      ...this.getState(),
+      currentPage,
+      skip,
+    });
   }
 }
 

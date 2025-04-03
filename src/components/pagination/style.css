@@ -1,0 +1,22 @@
+.Pagination {
+	margin-top: 24px;
+	display: flex;
+	align-items: center;
+	justify-content: end;
+	gap: 2px;
+}
+
+.Pagination-page {
+	cursor: pointer;
+	width: 22px;
+	height: 22px;
+	font-size: 16px;
+	line-height: 22px;
+	text-align: center;
+	color: var(--main-text);
+}
+
+.Pagination-page_active {
+	background-color: var(--primary);
+	color: var(--second-text);
+}
